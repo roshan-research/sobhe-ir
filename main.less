@@ -1,0 +1,82 @@
+@import "mixins.less";
+
+/* fonts */
+
+@font-face {
+	font-family: BMitra;
+	font-weight: normal;
+	src: url('fonts/BMitra.eot?#') format('eot'), url('fonts/BMitra.woff') format('woff'), url('fonts/BMitra.ttf') format('truetype');
+}
+@font-face {
+	font-family: BMitra;
+	font-weight: bold;
+	src: url('fonts/BMitraBold.eot?#') format('eot'), url('fonts/BMitraBold.woff') format('woff'), url('fonts/BMitraBold.ttf') format('truetype');
+}
+
+/* general */
+
+body, input, button, p {
+	font-family: 'B Mitra', BMitra, Arial;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: normal;
+}
+
+p {
+	text-align: justify;
+}
+
+.btn {
+	font-size: 16px;
+	line-height: 16px;	
+}
+
+ul, ol {
+	padding-right: 20px;
+}
+li {
+	line-height: 20px;
+}
+
+/* sobhe */
+
+body {
+	direction: rtl;
+	background: url(images/pattern.png);
+}
+
+#oo {
+	margin: 10px;
+	text-align: center;
+}
+
+#sobhe {
+	margin: 100px;
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	
+	text-shadow: 0 1px 1px #aaa;
+}
+
+#projects {
+
+	a {
+		text-align: center;
+		/*font-size: 30px;*/
+		background-color: white;
+		.border-radius(7px);
+		.box-shadow(0px 0px 5px 0px #ccc);
+		text-decoration: none;
+		color: black;
+
+		h2 {
+			padding: 5px;
+		}
+		p {
+			padding: 10px;
+		}
+
+		height: 150px;
+	}
+}
