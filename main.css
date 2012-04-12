@@ -42,16 +42,17 @@ body {
   text-align: center;
 }
 #sobhe {
-  margin: 100px;
+  margin: 120px;
   font-size: 50px;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 1px 1px #aaa;
 }
+h2 {
+  margin-bottom: 20px;
+}
 #projects a {
   text-align: center;
-  /*font-size: 30px;*/
-
   background-color: white;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -61,11 +62,41 @@ body {
   box-shadow: 0px 0px 5px 0px #cccccc;
   text-decoration: none;
   color: black;
-  height: 150px;
+  height: 120px;
 }
 #projects a h2 {
+  -webkit-border-radius: 7px 7px 0 0;
+  -moz-border-radius: 7px 7px 0 0;
+  border-radius: 7px 7px 0 0;
   padding: 5px;
+  padding-bottom: 0px;
+  background-color: #D5DED9;
+  color: #555;
+  text-shadow: 1px 1px 1px #EEE;
 }
 #projects a p {
   padding: 10px;
+  color: #555;
+  text-align: center;
+}
+#projects a:hover {
+  background: #99B2B7;
+}
+#projects a:hover p {
+  color: #fff;
+}
+#emails {
+  margin-top: 50px;
+}
+#emails li {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+#emails a.email {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  float: right;
+  margin: -3px 0 0 6px;
+  background: url(images/email.png);
 }
