@@ -26,8 +26,7 @@ p {
   font-size: 16px;
   line-height: 16px;
 }
-ul,
-ol {
+ul, ol {
   padding-right: 20px;
 }
 li {
@@ -53,9 +52,10 @@ body {
 .sub-title {
   margin: 50px;
   font-size: 30px;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
-  text-shadow: 0 1px 1px #aaa;
+  color: #555;
+  text-shadow: 0 1px 1px #fff;
 }
 h2 {
   margin-bottom: 20px;
