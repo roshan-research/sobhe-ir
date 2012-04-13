@@ -50,12 +50,20 @@ body {
 	text-align: center;
 }
 
-#sobhe {
+.sobhe {
 	margin: 120px;
+	margin-bottom: 30px;
 	font-size: 50px;
 	font-weight: bold;
 	text-align: center;
-	
+	text-shadow: 0 1px 1px #aaa;
+}
+
+.sub-title{
+	margin: 50px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
 	text-shadow: 0 1px 1px #aaa;
 }
 
@@ -63,7 +71,7 @@ h2 {
 	margin-bottom: 20px;
 }
 
-#projects {
+.projects {
 
 	a {
 		text-align: center;
@@ -98,20 +106,29 @@ h2 {
 	}
 }
 
-#emails {	
+.infor {	
 	margin-top: 50px;
 
 	li {
 		list-style-type: none;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 	}
 
-	a.email {
+	a{
 		display: inline-block;
-		width: 24px;
-		height: 24px;
+		width: 26px;
+		height: 26px;
 		float: right;
-		margin: -3px 0 0 6px;
-		background: url(images/email.png);
+		margin: -3px 0px 0px 6px;
+		&.email{
+			background: url(images/email.png);
+		}
+		&.github{
+			background: url(images/github.png);
+		}
 	}
+}
+
+.github{
+	margin-bottom: 60px;
 }
