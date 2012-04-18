@@ -19,6 +19,9 @@ p {
   line-height: 22px;
   font-weight: normal;
 }
+[class*="span"] {
+  float: right;
+}
 p {
   text-align: justify;
 }
@@ -42,7 +45,7 @@ body {
   text-align: center;
 }
 .sobhe {
-  margin: 120px;
+  margin: 150px;
   margin-bottom: 30px;
   font-size: 50px;
   font-weight: bold;
@@ -50,7 +53,7 @@ body {
   text-shadow: 0 1px 1px #aaa;
 }
 .sub-title {
-  margin: 50px;
+  margin: 40px 0 120px;
   font-size: 30px;
   font-weight: normal;
   text-align: center;
@@ -60,8 +63,7 @@ body {
 h2 {
   margin-bottom: 20px;
 }
-.projects a {
-  text-align: center;
+.projects .span4 {
   background-color: white;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -72,8 +74,10 @@ h2 {
   text-decoration: none;
   color: black;
   height: 120px;
+  margin-bottom: 20px;
 }
-.projects a h2 {
+.projects .span4 h2 {
+  text-align: center;
   -webkit-border-radius: 7px 7px 0 0;
   -moz-border-radius: 7px 7px 0 0;
   border-radius: 7px 7px 0 0;
@@ -83,37 +87,42 @@ h2 {
   color: #555;
   text-shadow: 1px 1px 1px #EEE;
 }
-.projects a p {
+.projects .span4 h2 img {
+  width: 32px;
+  height: 32px;
+}
+.projects .span4 div {
   padding: 10px;
   color: #555;
   text-align: center;
 }
-.projects a:hover {
-  background: #99B2B7;
+.projects .span4 p {
+  text-align: center;
 }
-.projects a:hover p {
-  color: #fff;
-}
-.infor {
-  margin-top: 50px;
-}
-.infor li {
-  list-style-type: none;
-  margin-bottom: 20px;
-}
-.infor a {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  float: right;
-  margin: -3px 0px 0px 6px;
-}
-.infor a.email {
+.projects .span4 a.email {
   background: url(images/email.png);
 }
-.infor a.github {
-  background: url(images/github.png);
+.projects .span4:hover {
+  background: #99B2B7;
 }
-.github {
-  margin-bottom: 60px;
+.projects .span4:hover div {
+  color: #fff;
+}
+.projects .span4:hover a.email {
+  background: url(images/email-on.png);
+}
+.emails {
+  margin: -15px 0 0 0;
+}
+.emails li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.emails a.email {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  float: right;
+  margin: -3px 0px 0px 6px;
 }

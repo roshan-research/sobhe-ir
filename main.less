@@ -22,6 +22,10 @@ body, input, button, p {
 	font-weight: normal;
 }
 
+[class*="span"] {
+	float: right;
+}
+
 p {
 	text-align: justify;
 }
@@ -51,7 +55,7 @@ body {
 }
 
 .sobhe {
-	margin: 120px;
+	margin: 150px;
 	margin-bottom: 30px;
 	font-size: 50px;
 	font-weight: bold;
@@ -60,7 +64,7 @@ body {
 }
 
 .sub-title{
-	margin: 50px;
+	margin: 40px 0 120px;
 	font-size: 30px;
 	font-weight: normal;
 	text-align: center;
@@ -73,63 +77,68 @@ h2 {
 }
 
 .projects {
-
-	a {
-		text-align: center;
+	.span4 {
 		background-color: white;
 		.border-radius(7px);
 		.box-shadow(0px 0px 5px 0px #ccc);
 		text-decoration: none;
 		color: black;
 		height: 120px;
+		margin-bottom: 20px;
 
 		h2 {
+			text-align: center;
 			.border-radius(7px 7px 0 0);
 			padding: 5px;
 			padding-bottom: 0px;
 			background-color: #D5DED9;
 			color: #555;
 			text-shadow: 1px 1px 1px #EEE;
+
+			img {
+				width: 32px;
+				height: 32px;
+			}
 		}
-		p {
+		div {
 			padding: 10px;
 			color: #555;
 			text-align: center;
+		}
+		p {
+			text-align: center;
+		}
+
+		a.email {
+			background: url(images/email.png);
 		}
 
 		&:hover {
 			background: #99B2B7;
 	
-			p {
+			div {
 				color: #fff;
+			}
+			a.email {
+				background: url(images/email-on.png);
 			}
 		}
 	}
 }
 
-.infor {	
-	margin-top: 50px;
+.emails {
+	margin: -15px 0 0 0;
 
 	li {
 		list-style-type: none;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
+		text-align: right;
 	}
-
-	a{
+	a.email {
 		display: inline-block;
-		width: 26px;
-		height: 26px;
+		width: 24px;
+		height: 24px;
 		float: right;
 		margin: -3px 0px 0px 6px;
-		&.email{
-			background: url(images/email.png);
-		}
-		&.github{
-			background: url(images/github.png);
-		}
 	}
-}
-
-.github{
-	margin-bottom: 60px;
 }
