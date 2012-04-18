@@ -41,7 +41,7 @@ body {
   background: url(images/pattern.png);
 }
 #oo {
-  margin: 10px;
+  margin: 15px 0 5px;
   text-align: center;
 }
 .sobhe {
@@ -53,7 +53,7 @@ body {
   text-shadow: 0 1px 1px #aaa;
 }
 .sub-title {
-  margin: 40px 0 120px;
+  margin: 40px 0 130px;
   font-size: 30px;
   font-weight: normal;
   text-align: center;
