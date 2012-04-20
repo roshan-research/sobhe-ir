@@ -19,14 +19,17 @@ body {
 h1 {
   color: #333333;
 }
-ol,
-ul {
+ol, ul {
   list-style: none outside none;
+}
+p {
+  text-align: justify;
 }
 #wrapper {
   margin: 0 auto;
   padding: 20px 0;
   position: relative;
+  margin-top: 120px;
 }
 .element {
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7);
@@ -61,12 +64,12 @@ ul {
   text-align: center;
 }
 #main h1 {
-  font-size: 30px !important;
+  font-size: 1.8em;
 }
 .sub-title {
-  margin-top: 30px !important;
-  margin-bottom: 60px !important;
+  margin-bottom: 60px;
   font-size: 120%;
+  color: #555;
 }
 .slogan {
   color: #888;
@@ -75,4 +78,15 @@ ul {
 .end-note {
   text-align: center;
   font-size: 13px;
+}
+#main h1 {
+  margin: 40px 0 20px;
+}
+#main .info {
+  color: #888;
+  margin: 20px 0 2px;
+  font-size: .9em;
+}
+#main a {
+  display: block;
 }
