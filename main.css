@@ -19,6 +19,10 @@ body {
 h1 {
   color: #333333;
 }
+ol,
+ul {
+  list-style: none outside none;
+}
 #wrapper {
   margin: 0 auto;
   padding: 20px 0;
@@ -28,6 +32,11 @@ h1 {
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  display: inline;
+  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+  position: relative;
 }
 .element h1 {
   margin: 15px 0 0 15px;
@@ -38,11 +47,14 @@ h1 {
 .element p {
   margin-left: 15px;
   margin-right: 15px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 2;
 }
 .top-section {
   height: 130px;
+}
+.project {
+  height: 250px;
 }
 #main {
   height: 400px;
@@ -55,4 +67,12 @@ h1 {
   margin-top: 30px !important;
   margin-bottom: 60px !important;
   font-size: 120%;
+}
+.slogan {
+  color: #888;
+  font-size: 15px !important;
+}
+.end-note {
+  text-align: center;
+  font-size: 13px;
 }
