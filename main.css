@@ -19,7 +19,8 @@ body {
 h1 {
   color: #333333;
 }
-ol, ul {
+ol,
+ul {
   list-style: none outside none;
 }
 p {
@@ -74,10 +75,6 @@ p {
 .slogan {
   color: #888;
   font-size: 15px !important;
-}
-.end-note {
-  text-align: center;
-  font-size: 13px;
 }
 #main h1 {
   margin: 40px 0 20px;
