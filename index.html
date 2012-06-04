@@ -7,54 +7,58 @@
 	<link rel="stylesheet" href="font.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="main.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="jquery.js"></script>
-	<script type="text/javascript" src="bootstrap.js"></script>
+	<!-- start Mixpanel --><script type="text/javascript">(function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+mixpanel.init("35712b6dd29f883fc94d2e7505fa9285");</script><!-- end Mixpanel -->
+	<script type="text/javascript">
+		mixpanel.track("visited: www.sobhe.ir");
+		mixpanel.track_links('#main a', 'on:www.sobhe.ir - clicked on info links');
+		mixpanel.track_links('#projects a', 'on:www.sobhe.ir - clicked on projects links');
+	</script>
 </head>
 <body>
-<div class="container">
-	<div id="oo">به نام خدا</div>
-		<h1 id="sobhe" class="sobhe">سُبحه</h1>
-		<h2 class="sub-title">کارگاه تولید نرم‌افزار</h2>
+<div class="container" class="row">
+	<div id="wrapper" class="span12">
+		<div id="main" class="element span3">
+			<h1>سُبحه</h1>
+			<div class="sub-title">کارگاه تولید نرم‌افزار</div>
+			
+			<div class="info">نوشته‌ها</div>
+			<a href="http://www.sobhe.ir/blog">بلاگ</a>
+			
+			<div class="info">پروژه‌های متن باز</div>
+			<a href="http://github.com/sobhe/">گیت‌هاب</a>
 
-		<div class="projects row">
-			<a class="span4" href="http://emenbar.ir">
-				<h2>منبر</h2>
-				<div>
-					<p>سامانه‌ای برای استفاده از سخنرانی‌ها</p>
-				</div>
-			</a>
-			<a class="span4" href="http://dadegan.sobhe.ir">
-				<h2>دادگان</h2>
-				<div>
-					<p>سامانه‌ای برای کاوش در میان پیکره وابستگی</p>
-				</div>
-			</a>
-			<a class="span4" href="http://reghaabat.ir">
-				<h2>رقابت</h2>
-				<div>
-					<p>سامانه‌ای برای برگزاری مسابقه کتاب‌خوانی</p>
-				</div>
-			</a>
-			<a class="span4" href="http://github.com/sobhe">
-				<h2>متن باز</h2>
-				<div>
-					<p>پروژه‌های متن باز ما در گیت‌هاب</p>
-				</div>
-			</a>
-			<a class="span4" href="http://www.sobhe.ir/blog">
-				<h2>بلاگ</h2>
-				<div>
-					<p>نوشته‌های گاه‌به‌گاه ما</p>
-				</div>
-			</a>
-			<div class="span4" href="">
-				<h2>اعضا</h2>
-				<div>
-					<ul class="emails">
-						<li>یاسر سوری <a class="email" href="mailto:yassersouri@gmail.com"> </a></li>
-						<li>علیرضا نوریان <a class="email" href="mailto:alireza.nournia@gmail.com"> </a></li>
-					</ul>
-				</div>
+			<div class="info">تماس با ما</div>
+			<a class="email" href="mailto:yassersouri@gmail.com">یاسر سوری</a>
+			<a class="email" href="mailto:alireza.nournia@gmail.com">علیرضا نوریان</a>
+		</div>
+		<div class="row">
+			<div class="element span4 top-section">
+				<h1>تولیدات ما</h1>
+				<p>قالب تولیدات شرکت دارای جنبه‌های <strong>فرهنگی</strong> و <strong>علمی</strong> است.</p>
 			</div>
+			<div class="element span5 top-section">
+				<h1>اعضا</h1>
+				<p>تیم سُبحه شامل دانشجویان رشته‌ی هوش مصنوعی است که دغدغه‌ی فرهنگی داشته و از ابزار کامپیوتر در همین زمینه استفاده می‌کنند.</p>
+			</div>
+			<ol id="projects" class="projects row">
+				<li class="project element span3">
+					<h1><a href="http://emenbar.ir/">منبر</a></h1>
+					<p  class="slogan">مدیریت محتوای سخنرانی‌های مذهبی</p>
+					<p>در قرن ۲۱ هستیم و نبرد رسانه‌ها. در این نبرد یکی از رسانه‌هایی که همواره مخاطب خاص خود را داشته است منبر و سخنرانی است. در این پروژه هدف کمک به پا منبری‌های قرن ۲۱ است.</p>
+				</li>
+				<li class="project element span3">
+					<h1><a href="http://dadegan.sobhe.ir/">دادگان</a></h1>
+					<p class="slogan">سامانه‌ای برای کاوش در میان پیکره وابستگی</p>
+					<p>برای کمک به هر کسی که در مورد «زبان فارسی» کمک می‌خواهد، از یک کودک دبستانی تا یک دانشجوی دکتری زبان‌شناسی.</p>
+				</li>
+				<li class="project element span3">
+					<h1><a href="http://reghaabat.ir/">رقابت</a></h1>
+					<p  class="slogan">سامانه‌ای برای برگزاری مسابقه کتاب‌خوانی</p>
+					<p>رقابت حاصل تجربه‌ی چندین دوره برگزاری مسابقه‌ی کتاب‌خوانی است. اگر تا حالا سعی کرده‌اید یک کودک را به خواندن کتاب تشویق کنید، می‌توانید از این ابزار و تجربیات ما استفاده کنید.</p>
+				</li>
+			</ol>
 		</div>
 	</div>
 </div>
