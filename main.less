@@ -1,108 +1,94 @@
-@import "mixins.less";
-
-/* general */
-
-body, input, button, p {
-	font-family: 'B Mitra', BMitra, Arial;
-	font-size: 18px;
-	line-height: 22px;
+/* font */
+@font-face {
+	font-family: BMitra;
 	font-weight: normal;
+	src: url('fonts/BMitra.eot?#') format('eot'), url('fonts/BMitra.woff') format('woff'), url('fonts/BMitra.ttf') format('truetype');
+}
+@font-face {
+	font-family: BMitra;
+	font-weight: bold;
+	src: url('fonts/BMitraBold.eot?#') format('eot'), url('fonts/BMitraBold.woff') format('woff'), url('fonts/BMitraBold.ttf') format('truetype');
 }
 
-[class*="span"] {
+/* bootstrap */
+body {
+	direction: rtl;
+}
+body, h1, h2, h3 {
+	font-family: 'B Mitra', BMitra, Arial;
+}
+body {
+	font-size: 18px;
+	line-height: 22px;
+}
+h1, h2, h3 {
+	font-weight: bold;
+}
+[class*="col-"] {
 	float: right;
 }
 
 /* sobhe */
-
 body {
-	direction: rtl;
 	background: url(images/pattern.png);
-}
-
-h1 {
-	color: #333333;
-}
-ol, ul{
-	list-style: none outside none;
-}
-
-p {
-	text-align: justify;
-}
-
-#wrapper{
-	margin: 0 auto;
-	padding: 20px 0;
-	position: relative;
-	margin-top: 120px;
 }
 
 .element{
 	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7);
 	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
-	margin-bottom: 20px;
-	display: inline;
-    float: right;
-    margin-left: 10px;
-    margin-right: 10px;
-    position: relative;
-	
-	h1{
-		margin: 15px 0 0 15px;
-		margin-left: 15px;
-		margin-right: 15px;
-		font-size: 20px;
+	padding: 25px 20px 12px;
+	margin-top: 25px;
+
+	h3 {
+		font-size: 26px;
+		margin-top: 0;
 	}
-
-	p{
-		margin-left: 15px;
-		margin-right: 15px;
-		font-size: 16px;
-		line-height: 2;
-	}
-}
-
-.top-section{
-	height: 130px
-}
-.project{
-	height: 250px;
-}
-
-#main{
-	height: 400px;
-	text-align: center;
-
-	h1{
-		font-size: 1.8em;
-	}
-}
-
-.sub-title{
-	margin-bottom: 60px;
-	font-size: 120%;
-	color: #555;
-}
-
-.slogan{
-	color: #888;
-	font-size: 15px !important;
 }
 
 #main {
-	h1 {
-		margin: 40px 0 20px;
+	.element {
+		padding: 27px 20px 30px;
 	}
-
+	.slogan {
+		font-size: 20px;
+		margin-bottom: 35px;
+	}
 	.info {
-		color: #888;
-		margin: 20px 0 2px;
-		font-size: .9em;
+		color: #777;
+		margin-top: 20px;
 	}
-
-	a {
-		display: block;
+	p {
+		margin-bottom: 0;
 	}
 }
 
+#projects {
+	margin-bottom: 50px;
+
+	& > div {
+		height: 135px;
+	}
+	.slogan {
+		font-size: 20px;
+		color: #777;
+	}
+	p {
+		text-align: justify;
+	}
+	a {
+		text-decoration: none;
+	}
+	.element:hover {
+		background: #efefef;
+
+		.slogan {
+			color: #333;
+		}
+	}
+}
+
+@media (min-width:992px) {
+	.container {
+		margin-top: 100px;
+	}
+}
