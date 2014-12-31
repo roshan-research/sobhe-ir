@@ -54,7 +54,7 @@ h2 {
   margin-bottom: 0;
 }
 #projects {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 #projects .slogan {
   font-size: 20px;
@@ -109,11 +109,9 @@ h2 {
   }
   #main > .element {
     height: 532px;
-    width: 255px;
   }
-}
-@media (max-width: 992px) {
   .affix {
-    position: static;
+    position: fixed;
+    width: 255px;
   }
 }
