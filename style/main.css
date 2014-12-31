@@ -109,9 +109,11 @@ h2 {
   }
   #main > .element {
     height: 532px;
-  }
-  .affix {
-    position: fixed;
     width: 255px;
+  }
+}
+@media (min-height: 620px) {
+  #main > .element {
+    position: fixed;
   }
 }
