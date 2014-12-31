@@ -109,5 +109,11 @@ h2 {
   }
   #main > .element {
     height: 532px;
+    width: 255px;
+  }
+}
+@media (max-width: 992px) {
+  .affix {
+    position: static;
   }
 }
