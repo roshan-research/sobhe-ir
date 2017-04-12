@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>باز</title>
+	<link rel="stylesheet" href="../style/bootstrap.min.css">
+	<link rel="stylesheet" href="../style/font.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+	<h1>باز</h1>
+	<p>جستجوی فارسی</p>
+
+
+	<div class="box complete">
+		<h2>باید زود بگیرد که چه می‌خواهیم</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="ش">
+	</div>
+
+	<div class="box query">
+		<h2>و به نتیجه برسد</h2>
+		<p>جستجو در همه بخش‌ها </p>
+
+		<input class="typeahead" type="text" dir="auto" value="پرویز">
+	</div>
+
+	<div class="box query">
+		<h2>حتی اگر اشتباه نوشتیم</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="بادیگاد">
+	</div>
+
+	<div class="box query">
+		<h2>یا اینکه فاصله‌ها را درست نگذاشتیم</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="نا خدا">
+	</div>
+
+	<div class="box query">
+		<h2>بلاخره پیش می‌آید که یکی از دکمه را فشار ندهیم</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="شهرموشها">
+	</div>
+
+	<div class="box query">
+		<h2>ریشه‌یابی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="می‌آید">
+	</div>
+
+	<div class="box suggest">
+		<h2>و اینکه زود به چیزی که می‌خواهیم جستجو کنیم برسیم</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="شهر">
+	</div>
+
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="typeahead.bundle.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+
+	remoteHost = 'http://sls.sobhe.ir:5000/test/';
+
+	moviesQuery = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'movie|person/query?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; console.log(items); return items; }
+		}
+	});
+	moviesComplete = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'movie/complete?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { return $.map(result.items, function(res) { return res.item; }); }
+		}
+	});
+	moviesSuggest = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'movie/suggest?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { return result.items; }
+		}
+	});
+
+
+	var headerTemplate = function(didYouMean) { return '<div class="item"><p>جستجوی '+ didYouMean +'</p></div>'; }
+
+	var movieTemplate = function(item) { return '<div class="movie clearfix"><a href="'+ item.data.url +'"><img src="'+ item.data.image +'"></img><p>' + item.title + '</p><span class="number">'+ item.importance +' بازدید</span></a></div>'; };
+
+	var personTemplate = function(item) { return '<div class="person clearfix"><a href="'+ item.data.url +'"><img src="'+ item.data.image +'"></img><p>' + item.title + '</p></div>'; };
+
+	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
+
+
+	$('.query input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1
+	},
+	{
+		display: 'title',
+		name: 'query-items',
+		source: moviesQuery,
+		limit: 10,
+		templates: {
+			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { console.log(item); return ('labels' in item) ? movieTemplate(item) : personTemplate(item); }
+		}
+	});
+
+	$('.complete input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1,
+	},
+	{
+		display: 'title',
+		name: 'complete-items',
+		source: moviesComplete,
+		limit: 5,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return ('labels' in item) ? movieTemplate(item) : personTemplate(item); }
+		}
+	});
+
+
+	$('.suggest input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1,
+	},
+	{
+		display: 'text',
+		name: 'suggest-items',
+		source: moviesSuggest,
+		limit: 5,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return textTemplate(item); }
+		}
+	});
+});
+</script>
+</body>
+</html>

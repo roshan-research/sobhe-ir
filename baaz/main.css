@@ -1,0 +1,119 @@
+
+/* bootstrap */
+
+body {
+	direction: rtl;
+}
+body, h1, h2, h3 {
+	font-family: IRMitra, Arial;
+}
+body {
+	font-size: 18px;
+	line-height: 1.5;
+}
+[class*="col-"] {
+	float: right;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+/* typeahead */
+
+.typeahead, .tt-query, .tt-hint {
+  width: 396px;
+  height: 50px;
+  padding: 8px 12px;
+  font-size: 24px;
+  line-height: 30px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.typeahead {
+  background-color: #fff;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+.tt-query {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {
+  width: 396px;
+  margin: 3px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.tt-suggestion:hover, .tt-suggestion.tt-cursor {
+  cursor: pointer;
+  background-color: #efefef;
+}
+
+
+/* baaz */
+
+body {
+	background: url(pattern.png);
+	text-align: center;
+}
+
+.box {
+	height: 100vh;
+}
+
+.tt-menu {
+	text-align: right;
+}
+
+.tt-suggestion a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.movie p, .person p {
+	font-size: 130%;
+	line-height: 1.5;
+	padding-top: 15px;
+	margin: 0;
+}
+
+.tt-suggestion img {
+	float: right;
+	width: 70px;
+	margin-left: 10px;
+}
+
+.movie .number {
+	font-family: BMitra;
+	font-size: 90%;
+}
+
+.tt-menu .item {
+  padding: 3px 20px;
+}
+.tt-menu em {
+	font-size: 90%;
+	font-weight: bold;
+	font-style: normal;
+}
