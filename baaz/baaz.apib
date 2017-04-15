@@ -1,0 +1,165 @@
+FORMAT: 1A
+HOST: http://sls.sobhe.ir:5000/
+
+# Baaz
+
+## Indexing [/{index_name}/index]
+
+Functions for managing search index content.
+
++ Parameters
+
+    + index_name (required, string, `test`) name of the entiteis collection
+
+### Add Entity [POST]
+
+You may create or update entities using this action. It takes a JSON
+object containing a list of entites with following optional properties:
+
+TODO: property documentation.
+
++ Request (application/json)
+
+        {
+            "items": [
+                {
+                    "type": "type1",
+                    "id": 1,
+                    "title": "عنوان",
+                    "importance": 1,
+                    "description": "...",
+                    "labels": "برچسب ۱|برچسب ۲",
+                    "data": {"url": "http://sample.com"}
+                },
+                {
+                    "type": "type2",
+                    "id": 5,
+                    "title": "عنوان"
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "ids": [1, 5]
+            }
+
+### Delete Entity [DELETE]
+
+You may delete entities using this action.
+
++ Request (application/json)
+
+        {
+            "type": "type2",
+            "id": 5
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 1
+            }
+
+
+## Search [/{index_name}/{type_names}/query?text={text}]
+
+Finding indexed items.
+
++ Parameters
+
+    + index_name (required, string, `test`) name of the entiteis collection
+    + type_names (required, string, `type1|type2`) list of type names sepearted with vertical bar (|) character
+    + text (required, string, `عنوان`) text phrase to search
+
+### Request [GET]
+
++ Response 200 (application/json)
+
+        {
+          "items": [
+            {
+              "type": "type1",
+              "id": "1",
+              "item": {
+                "title": "عنوان",
+                "labels": "برچسب ۱|برچسب ۲",
+                "description": "…",
+                "importance": 1,
+                "data": {
+                  "url": "http://sample.com"
+                }
+              },
+              "highlight": {
+                "title": [
+                  "<em>عنوان</em>"
+                ]
+              },
+              "_score": 2.9632897
+            }
+          ]
+        }
+
+
+## Realtime Search [/{index_name}/{type_names}/complete?text={text}]
+
+Finding indexed items while user types search query.
+
++ Parameters
+
+    + index_name (required, string, `test`) name of the entiteis collection
+    + type_names (required, string, `type1`) list of type names sepearted with vertical bar (|) character
+    + text (required, string, `ع`) text phrase to search in entity titles
+
+### Request [GET]
+
++ Response 200 (application/json)
+
+        {
+          "items": [
+            {
+              "type": "type1",
+              "id": "1"
+              "text": "عنوان",
+              "item": {
+                "title": "عنوان"
+                "labels": "برچسب ۱|برچسب ۲",
+                "description": "…",
+                "importance": 1,
+                "data": {
+                  "url": "http://sample.com"
+                },
+              },
+              "_score": 2,
+            }
+          ]
+        }
+
+
+## Query Suggestion [/{index_name}/{type_names}/suggest?text={text}]
+
+Autocomplete functionality based on search history.
+
++ Parameters
+
+    + index_name (required, string, `test`) name of the entiteis collection
+    + type_names (required, string, `type1`) list of type names sepearted with vertical bar (|) character
+    + text (required, string, `ع`) text phrase to search in previous search history
+
+### Request [GET]
+
++ Response 200 (application/json)
+
+        {
+          "items": [
+            {
+              "text": "عنوان",
+              "count": 4
+            }
+          ]
+        }
