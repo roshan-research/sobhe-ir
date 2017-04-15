@@ -7,7 +7,7 @@ body {
 body, h1, h2, h3 {
 	font-family: IRMitra, Arial;
 }
-body {
+body, p {
 	font-size: 18px;
 	line-height: 1.5;
 }
@@ -16,7 +16,11 @@ body {
 }
 
 h1 {
-	font-size: 50px;
+	font-size: 60px;
+}
+
+b {
+	font-size: 90%;
 }
 
 /* typeahead */
@@ -94,7 +98,7 @@ body {
 .movie p, .person p {
 	font-size: 130%;
 	line-height: 1.5;
-	padding-top: 15px;
+	padding-top: 10px;
 	margin: 0;
 }
 
@@ -102,6 +106,7 @@ body {
 	float: right;
 	width: 70px;
 	margin-left: 10px;
+	border: 1px solid #ccc;
 }
 
 .movie .number {

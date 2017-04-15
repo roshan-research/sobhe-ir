@@ -4,17 +4,18 @@
 	<meta charset="utf-8">
 	<title>باز</title>
 	<link rel="stylesheet" href="../style/bootstrap.min.css">
-	<link rel="stylesheet" href="../style/font.css">
+	<link rel="stylesheet" href="../fonts/all.css">
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 <div class="container">
 	<h1>باز</h1>
-	<p>جستجوی فارسی</p>
+	<p>جستجوی آسان فارسی</p>
 
 
-	<div class="box complete">
-		<h2>باید زود بگیرد که چه می‌خواهیم</h2>
+	<div class="box complete" style="margin-top: 50px;">
+		<h2>جستجو در لحظه</h2>
+		<p>با <b>تحمل خطا</b>، با توجه به <b>اهمیت</b> و در <b>انواع</b> مختلف</p>
 
 		<input class="typeahead" type="text" dir="auto" value="ش">
 	</div>
@@ -27,7 +28,7 @@
 	</div>
 
 	<div class="box query">
-		<h2>حتی اگر اشتباه نوشتیم</h2>
+		<h2>درک منظور مخاطب</h2>
 
 		<input class="typeahead" type="text" dir="auto" value="بادیگاد">
 	</div>
@@ -45,7 +46,7 @@
 	</div>
 
 	<div class="box query">
-		<h2>ریشه‌یابی</h2>
+		<h2>آشنایی با زبان فارسی</h2>
 
 		<input class="typeahead" type="text" dir="auto" value="می‌آید">
 	</div>
@@ -71,7 +72,7 @@ $(function(){
 		remote: {
 			url: remoteHost + 'movie|person/query?text=%QUERY',
 			wildcard: '%QUERY',
-			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; console.log(items); return items; }
+			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
 		}
 	});
 	moviesComplete = new Bloodhound({
@@ -94,7 +95,7 @@ $(function(){
 	});
 
 
-	var headerTemplate = function(didYouMean) { return '<div class="item"><p>جستجوی '+ didYouMean +'</p></div>'; }
+	var headerTemplate = function(didYouMean) { return '<div class="item text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
 	var movieTemplate = function(item) { return '<div class="movie clearfix"><a href="'+ item.data.url +'"><img src="'+ item.data.image +'"></img><p>' + item.title + '</p><span class="number">'+ item.importance +' بازدید</span></a></div>'; };
 
@@ -116,7 +117,7 @@ $(function(){
 		templates: {
 			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
 			empty: '<div class="item">...</div>',
-			suggestion: function(item) { console.log(item); return ('labels' in item) ? movieTemplate(item) : personTemplate(item); }
+			suggestion: function(item) { return ('labels' in item) ? movieTemplate(item) : personTemplate(item); }
 		}
 	});
 
