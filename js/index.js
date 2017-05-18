@@ -12,13 +12,13 @@ function infiniteAnimation(){
     setTimeout(function(){ infiniteAnimation()}, 18000);
 }
 $(document).ready(function(){
-    $(function(){
-        $("#typed").typed({
-            strings: ["نویسه خوان الف", "برای خواندن فارسی", "انگلیسی و عربی"],
-            typeSpeed: 30,
-            loop: true
-        });
-    });
+    // $(function(){
+    //     $("#typed").typed({
+    //         strings: ["نویسه خوان الف", "برای خواندن فارسی", "انگلیسی و عربی"],
+    //         typeSpeed: 30,
+    //         loop: true
+    //     });
+    // });
 
     $(".idea-block").hover(function(){
         var block = $(this);
