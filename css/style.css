@@ -346,11 +346,11 @@ div.text-colored *{
 }
 
 .loading-spinner {
+    width: 20px;
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
-    width: 20px;
     top: 0;
     bottom: 0;
 }
