@@ -345,6 +345,15 @@ div.text-colored *{
     cursor: pointer;
 }
 
+.loading-spinner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 200px;
+    top: 0;
+    bottom: 0;
+}
 @media(min-width: 770px){
     #cf4a{
         height: calc(100vh - 65px);

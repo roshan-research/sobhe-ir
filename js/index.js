@@ -40,3 +40,7 @@ $(document).ready(function(){
 
 
 });
+
+window.onload = function(){
+  $('body > #load').fadeOut(1000,function(){$(this).remove();});
+};
