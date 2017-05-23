@@ -1,0 +1,126 @@
+
+FORMAT: 1A
+HOST: http://api.sobhe.ir
+
+# Parde
+
+Parde recognizes unsafe images.
+
+> For using Parde API you need a TOKEN_KEY, if you don't have one,
+please contact parde@sobhe.ir.
+
+
+## Process Images [/parde/api/images_safety]
+
+### Request [POST]
+
+You may ask safety of some images using this action. Safety is a float
+number between 0 (unsafe) and 1 (safe) that shows probability of input
+image being safe.
+
+> Asking safety of multiple images in one request results in better
+performance.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "image_urls": [
+                    "http://www.sobhe.ir/baaz/img/goshawk.jpg"
+                ]
+            }
+
++ Response 200 (application/json)
+
+        {
+            "http://www.sobhe.ir/baaz/img/goshawk.jpg": 1
+        }
+
+
+## Report Image Safety [/parde/api/report]
+
+### Request [POST]
+
+You may report safety of one image using this action. Parde learns reported
+images for predicting image safety more precisely.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "image_url": "http://www.sobhe.ir/baaz/img/goshawk.jpg",
+                "is_safe": true
+            }
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "image_url": "http://www.sobhe.ir/baaz/img/goshawk.jpg",
+            "is_safe": true
+        }
+
+
+## Remove Image Report [/parde/api/remove_report]
+
+### Request [POST]
+
+You may remove reported images using this action. Parde removes all of your
+reports with input url and responds with their object id.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "image_url": "http://www.sobhe.ir/baaz/img/goshawk.jpg"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "image_url": "http://www.sobhe.ir/baaz/img/goshawk.jpg",
+            "removed_reports": [1]
+        }
+
+
+## Video Keyframes [/api/video_frames]
+
+### Request [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "video_url": "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "video_url":"http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4",
+            "frames":[
+                "http://api.sobhe.ir/media/videos/big_buck_bunny_720p_2mb/frame-00:00:00.jpg",
+                "http://api.sobhe.ir/media/videos/big_buck_bunny_720p_2mb/frame-00:00:08.jpg",
+                "http://api.sobhe.ir/media/videos/big_buck_bunny_720p_2mb/frame-00:00:13.jpg"
+            ]
+        }

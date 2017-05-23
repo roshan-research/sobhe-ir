@@ -1,0 +1,95 @@
+
+FORMAT: 1A
+HOST: http://api.sobhe.ir
+
+# Alefba
+
+Alefba reads Perisan, Arabic and English text images.
+
+> For using Alefba API you need a TOKEN_KEY, if you don't have one,
+please contact alefba@sobhe.ir.
+
+
+## Read Image [/alefba/api/read_image]
+
+Finds image's text parts and reads them.
+
+### Request [POST]
+
+> For uploading image file you can send `multipart/form-data` request
+> to this function:
+
+    curl -X POST --header "Authorization: Token TOKEN_KEY" -F "image=@FILENAME" http://HOSTNAME/alefba/api/read_image
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "image_url": "http://api.sobhe.ir/media/docs/boute/page1.jpg"
+            }
+
++ Response 200 (application/json)
+
+        {
+          "image_url": "http://api.sobhe.ir/media/docs/boute/page1.jpg",
+          "document": {
+            "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+            "parts": [
+              {
+                "box": "230 367 2096 543",
+                "text": "درس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+                "lines": [
+                  {
+                    "box": "232 367 2093 73",
+                    "text": "درس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها",
+                    "words": [
+                      {
+                        "box": "1917 367 386 73",
+                        "text": "درس‌های دانشگاهی",
+                        "probability": 0.99
+                      },
+                      ...
+                    ]
+                  },
+                  ...
+                ]
+              },
+              ...
+            ]
+          }
+        }
+
+
+
+## Document Pages [/api/document_pages]
+
+Extracts pages of `PDF` document.
+
+### Request [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
+            }
+
++ Response 200 (application/json)
+
+        {
+          "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf",
+          "pages": [
+            "http://api.sobhe.ir/media/docs/boute/page1.jpg",
+            "http://api.sobhe.ir/media/docs/boute/page2.jpg"
+          ]
+        }

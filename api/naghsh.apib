@@ -1,0 +1,43 @@
+
+FORMAT: 1A
+HOST: http://api.sobhe.ir/naghsh/api/
+
+# Naghsh
+
+
+> For using Naghsh API you need a TOKEN_KEY, if you don't have one,
+please contact naghsh@sobhe.ir.
+
+
+## Process Images [/tag_images]
+
+### Request [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "image_urls": [
+                    "http://tetonraptorcenter.org/assets/media/images/raptor-profiles/Northern%20Goshawk.jpg"
+                ]
+            }
+
++ Response 200 (application/json)
+
+        {
+          "http://tetonraptorcenter.org/assets/media/images/raptor-profiles/Northern%20Goshawk.jpg": {
+            "مرغ": 0.01,
+            "باغ": 0.14,
+            "شاهین": 0.64,
+            "آکواریوم": 0.07,
+            "فواره": 0.04,
+            "تالاب": 0.1,
+            "عقاب": 0.02,
+            "جنگل": 0.22
+          }
+        }
