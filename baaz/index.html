@@ -56,11 +56,11 @@
 		<input class="typeahead" type="text" dir="auto" value="شهر">
 	</div>
 
-	<div class="box paper query">
+	 <div class="box paper query">
 		<h2>جستجو در مقالات</h2>
 
-		<input class="typeahead" type="text" dir="auto" value="پرویز">
-	</div>
+		<input class="typeahead" type="text" dir="auto" value="اقتصاد مقاوم">
+	</div> 
 </div>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="typeahead.bundle.min.js"></script>
@@ -158,7 +158,7 @@ $(function(){
 });
 </script>
 
-    
+
 <script type="text/javascript">
 $(function(){
 
@@ -168,13 +168,13 @@ $(function(){
 		remote: {
 			url: remoteHost + 'civilica/paper/query?text=%QUERY',
 			wildcard: '%QUERY',
-			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; console.log(items); return items; }
+			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
 		}
 	});
 
 	var headerTemplate = function(didYouMean) { return '<div class="item text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
-    var paperTemplate = function(item) { return '<div class="paper clearfix">'+ item.title + '</div>'; };
+    var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper clearfix"><a href="'+ item.data.link +'"><p>'+ item.title + '<span class="year number">سال '+ item.importance +'</span></p></a></div>'; };
 
 	$('.paper.query input.typeahead').typeahead({
 		hint: false,
@@ -185,13 +185,16 @@ $(function(){
 		display: 'title',
 		name: 'paper-query-items',
 		source: papersQuery,
-		limit: 10,
+		limit: 50,
 		templates: {
 			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
 			empty: '<div class="item">...</div>',
 			suggestion: function(item) { return paperTemplate(item); }
 		}
-	});
+	}).on('keyenter keypress keydown keyup input', function($e) {
+        console.log($e.keyCode);
+        $e.stopPropagation();
+    });
 });
 </script>
 </body>

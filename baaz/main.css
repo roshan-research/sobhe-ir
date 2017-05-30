@@ -109,7 +109,7 @@ body {
 	border: 1px solid #ccc;
 }
 
-.movie .number {
+.number {
 	font-family: BMitra;
 	font-size: 90%;
 }
@@ -121,4 +121,17 @@ body {
 	font-size: 90%;
 	font-weight: bold;
 	font-style: normal;
+}
+
+.ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+
+.paper .year {
+    float: left;
+}
+.paper.ltr .year {
+    float: right;
 }
