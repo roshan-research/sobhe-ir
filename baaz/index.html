@@ -192,8 +192,12 @@ $(function(){
 			suggestion: function(item) { return paperTemplate(item); }
 		}
 	}).on('keyenter keypress keydown keyup input', function($e) {
-        console.log($e.keyCode);
         $e.stopPropagation();
+        if ($e.keyCode === 13) {
+        	$('.paper.query input.typeahead').typeahead('open');
+        } else {
+        	$('.paper.query input.typeahead').typeahead('close');
+        }
     });
 });
 </script>
