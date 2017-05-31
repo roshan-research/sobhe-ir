@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>باز</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../fonts/mitra.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+	<h1>باز</h1>
+	<p style="margin-bottom: 50px;">جستجوی آسان فارسی</p>
+
+    <div class="box paper query">
+		<h2>درک منظور مخاطب</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="هوش هیجانی">
+	</div>
+
+	<div class="box paper query">
+		<h2>آشنایی با زبان فارسی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="می‌آید">
+	</div>
+
+	<div class="box paper query">
+		<h2>جستجوی دقیق</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="اقتصاد «مقاوم»">
+	</div>
+
+	<div class="box paper suggest">
+		<h2>سابقه جستجو</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="ا">
+	</div>
+
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="typeahead.bundle.min.js"></script>
+
+<script type="text/javascript">
+var remoteHost = 'http://sls.sobhe.ir:5000/';
+
+$(function(){
+
+    papersQuery = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/query?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { items = $.map(result.items, function(res) { res.item.highlight = res.highlight.title; return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
+		}
+	});
+	papersSuggest = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/suggest?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { return result.items; }
+		}
+	});
+
+
+	var headerTemplate = function(didYouMean) { return '<div class="item text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
+
+    var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper clearfix"><a href="'+ item.data.link +'"><p>'+ item.highlight + '<span class="year number">'+ item.importance +'</span></p></a></div>'; };
+    
+	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
+
+
+	$('.paper.query input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1
+	}, {
+		display: 'title',
+		name: 'paper-query-items',
+		source: papersQuery,
+		limit: 50,
+		templates: {
+			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return paperTemplate(item); }
+		}
+	}).on('keyenter keypress keydown keyup input', function($e) {
+        if ($.inArray($e.keyCode, [9, 16 , 17, 18, 20, 37, 38, 39, 40]) < 0) {
+            $e.stopPropagation();
+            $(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
+        }
+    });
+    
+	$('.paper.suggest input.typeahead').typeahead({
+		hint: true,
+		highlight: false,
+		minLength: 1,
+	}, {
+		display: 'text',
+		name: 'movie-suggest-items',
+		source: papersSuggest,
+		limit: 10,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return textTemplate(item); }
+		}
+	});
+});
+</script>
+</body>
+</html>

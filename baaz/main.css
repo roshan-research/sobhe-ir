@@ -26,7 +26,7 @@ b {
 /* typeahead */
 
 .typeahead, .tt-query, .tt-hint {
-  width: 396px;
+  width: 700px;
   height: 50px;
   padding: 8px 12px;
   font-size: 24px;
@@ -53,7 +53,7 @@ b {
 }
 
 .tt-menu {
-  width: 396px;
+  width: 700px;
   margin: 3px 0;
   padding: 8px 0;
   background-color: #fff;
@@ -111,7 +111,6 @@ body {
 
 .number {
 	font-family: BMitra;
-	font-size: 90%;
 }
 
 .tt-menu .item {
@@ -122,15 +121,25 @@ body {
 	font-weight: bold;
 	font-style: normal;
 }
+.tt-menu p {
+    margin-bottom: 0;
+    font-size: 19px;
+}
 
 .ltr {
     direction: ltr;
     text-align: left;
 }
 
-
 .paper .year {
     float: left;
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid;
+    line-height: 1;
+    padding: 3px 4px 0;
+    margin-top: 2px;
+    border-radius: 3px;
 }
 .paper.ltr .year {
     float: right;

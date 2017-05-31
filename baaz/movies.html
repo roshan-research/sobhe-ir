@@ -55,12 +55,6 @@
 
 		<input class="typeahead" type="text" dir="auto" value="شهر">
 	</div>
-
-	 <div class="box paper query">
-		<h2>جستجو در مقالات</h2>
-
-		<input class="typeahead" type="text" dir="auto" value="اقتصاد مقاوم">
-	</div> 
 </div>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="typeahead.bundle.min.js"></script>
@@ -110,8 +104,7 @@ $(function(){
 		hint: false,
 		highlight: false,
 		minLength: 1
-	},
-	{
+	}, {
 		display: 'title',
 		name: 'movie-query-items',
 		source: moviesQuery,
@@ -127,8 +120,7 @@ $(function(){
 		hint: false,
 		highlight: false,
 		minLength: 1,
-	},
-	{
+	}, {
 		display: 'title',
 		name: 'movie-complete-items',
 		source: moviesComplete,
@@ -144,8 +136,7 @@ $(function(){
 		hint: false,
 		highlight: false,
 		minLength: 1,
-	},
-	{
+	}, {
 		display: 'text',
 		name: 'movie-suggest-items',
 		source: moviesSuggest,
@@ -155,50 +146,6 @@ $(function(){
 			suggestion: function(item) { return textTemplate(item); }
 		}
 	});
-});
-</script>
-
-
-<script type="text/javascript">
-$(function(){
-
-    papersQuery = new Bloodhound({
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		datumTokenizer: Bloodhound.tokenizers.whitespace,
-		remote: {
-			url: remoteHost + 'civilica/paper/query?text=%QUERY',
-			wildcard: '%QUERY',
-			filter: function (result) { items = $.map(result.items, function(res) { return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
-		}
-	});
-
-	var headerTemplate = function(didYouMean) { return '<div class="item text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
-
-    var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper clearfix"><a href="'+ item.data.link +'"><p>'+ item.title + '<span class="year number">سال '+ item.importance +'</span></p></a></div>'; };
-
-	$('.paper.query input.typeahead').typeahead({
-		hint: false,
-		highlight: false,
-		minLength: 1
-	},
-	{
-		display: 'title',
-		name: 'paper-query-items',
-		source: papersQuery,
-		limit: 50,
-		templates: {
-			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
-			empty: '<div class="item">...</div>',
-			suggestion: function(item) { return paperTemplate(item); }
-		}
-	}).on('keyenter keypress keydown keyup input', function($e) {
-        $e.stopPropagation();
-        if ($e.keyCode === 13) {
-        	$('.paper.query input.typeahead').typeahead('open');
-        } else {
-        	$('.paper.query input.typeahead').typeahead('close');
-        }
-    });
 });
 </script>
 </body>
