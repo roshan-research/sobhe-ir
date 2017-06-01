@@ -91,7 +91,12 @@ $(function(){
             $e.stopPropagation();
             $(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
         }
-    });
+    }).on('typeahead:open', function (obj, datum, name) {
+	    $('.tt-menu').unbind('click'); 
+	});
+
+
+
     
 	$('.paper.suggest input.typeahead').typeahead({
 		hint: true,
