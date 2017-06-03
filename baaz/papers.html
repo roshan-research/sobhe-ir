@@ -51,7 +51,7 @@ $(function(){
 		remote: {
 			url: remoteHost + 'civilica/paper/query?text=%QUERY',
 			wildcard: '%QUERY',
-			filter: function (result) { items = $.map(result.items, function(res) { res.item.highlight = res.highlight.title; return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
+			filter: function (result) { items = $.map(result.items, function(res) { res.item.highlight = res.highlight.title || res.item.title; return res.item; }); if (items.length && result.didYouMean) items[0].didYouMean = result.didYouMean; return items; }
 		}
 	});
 	papersSuggest = new Bloodhound({
@@ -68,7 +68,7 @@ $(function(){
 	var headerTemplate = function(didYouMean) { return '<div class="item text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
     var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper clearfix"><a href="'+ item.data.link +'"><p>'+ item.highlight + '<span class="year number">'+ item.importance +'</span></p></a></div>'; };
-    
+
 	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
 
 
@@ -92,12 +92,12 @@ $(function(){
             $(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
         }
     }).on('typeahead:open', function (obj, datum, name) {
-	    $('.tt-menu').unbind('click'); 
+	    $('.tt-menu').unbind('click');
 	});
 
 
 
-    
+
 	$('.paper.suggest input.typeahead').typeahead({
 		hint: true,
 		highlight: false,
