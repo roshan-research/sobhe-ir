@@ -116,31 +116,53 @@ body {
 .tt-menu .item {
   padding: 3px 20px;
 }
-.tt-menu em {
-	font-size: 90%;
-	font-weight: bold;
-	font-style: normal;
-}
 .tt-menu p {
-    margin-bottom: 0;
-    font-size: 19px;
+	margin-bottom: 0;
+	font-size: 19px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.tt-menu em {
+  font-size: 90%;
+  font-weight: bold;
+  font-style: normal;
 }
 
 .ltr {
-    direction: ltr;
-    text-align: left;
+	direction: ltr;
+	text-align: left;
 }
 
-.paper .year {
-    float: left;
-    display: inline-block;
-    background-color: #eee;
-    border: 1px solid;
-    line-height: 1;
-    padding: 3px 4px 0;
-    margin-top: 2px;
-    border-radius: 3px;
+.paper-item {
+	border-bottom: 1px dashed #ccc;
 }
-.paper.ltr .year {
-    float: right;
+.paper-item:last-child {
+  border: none;
+}
+.paper-item .year {
+	float: left;
+	display: inline-block;
+	background-color: #eee;
+	border: 1px solid;
+	line-height: 1;
+	padding: 3px 4px 0;
+	margin-top: 5px;
+  margin-right: 10px;
+	border-radius: 3px;
+}
+.paper-item.ltr .year {
+	float: right;
+}
+.paper-item:hover .year {
+  color: #fff;
+  border-color: #fff;
+  background-color: royalblue;
+}
+
+.paper-item .description {
+  font-size: 90%;
+  color: #999;
+  margin-top: 5px;
 }
