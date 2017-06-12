@@ -15,7 +15,7 @@
     <div class="box paper query">
 		<h2>درک منظور مخاطب</h2>
 
-		<input class="typeahead" type="text" dir="auto" value="هوش هیجانی">
+		<input class="typeahead" type="text" dir="auto" value="هوش هیجانی" autocomplete="off">
 	</div>
 
 	<div class="box paper query">
@@ -42,6 +42,7 @@
 
 <script type="text/javascript">
 var remoteHost = 'http://baaz.sobhe.ir:5000/';
+var running = false;
 
 $(function(){
 
@@ -59,8 +60,8 @@ $(function(){
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		remote: {
 			url: remoteHost + 'civilica/paper/suggest?text=%QUERY',
+			filter: function (result) { return result.items; },
 			wildcard: '%QUERY',
-			filter: function (result) { return result.items; }
 		}
 	});
 
@@ -79,7 +80,13 @@ $(function(){
 	}, {
 		display: 'title',
 		name: 'paper-query-items',
-		source: papersQuery,
+		source: function(query, syncResults, asyncResults){
+			if(running){
+				return;
+			}else{
+				papersQuery.search(query, syncResults, asyncResults);
+			}
+		},
 		limit: 50,
 		templates: {
 			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
@@ -89,14 +96,19 @@ $(function(){
 	}).on('keyenter keypress keydown keyup input', function($e) {
         if ($.inArray($e.keyCode, [9, 16 , 17, 18, 20, 37, 38, 39, 40]) < 0) {
             $e.stopPropagation();
-            $(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
+            if($e.keyCode === 13){
+            	running = false;
+            	var theVal = $($e.target).val();
+            	$($e.target).typeahead('val', '');
+            	$($e.target).focus().typeahead('val',theVal).focus();
+            }else{
+            	running = true;
+            }
+            //$(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
         }
     }).on('typeahead:open', function (obj, datum, name) {
 	    $('.tt-menu').unbind('click');
 	});
-
-
-
 
 	$('.paper.suggest input.typeahead').typeahead({
 		hint: true,
