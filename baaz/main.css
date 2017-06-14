@@ -2,25 +2,25 @@
 /* bootstrap */
 
 body {
-	direction: rtl;
+  direction: rtl;
 }
 body, h1, h2, h3 {
-	font-family: IRMitra, Arial;
+  font-family: IRMitra, Arial;
 }
 body, p {
-	font-size: 18px;
-	line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.5;
 }
 [class*="col-"] {
-	float: right;
+  float: right;
 }
 
 h1 {
-	font-size: 60px;
+  font-size: 60px;
 }
 
 b {
-	font-size: 90%;
+  font-size: 90%;
 }
 
 /* typeahead */
@@ -78,47 +78,48 @@ b {
 /* baaz */
 
 body {
-	background: url(pattern.png);
-	text-align: center;
+  background: url(pattern.png);
+  text-align: center;
 }
 
 .box {
-	height: 100vh;
+  padding-top: 20px;
+  height: 100vh;
 }
 
 .tt-menu {
-	text-align: right;
+  text-align: right;
 }
 
 .tt-suggestion a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .movie p, .person p {
-	font-size: 130%;
-	line-height: 1.5;
-	padding-top: 10px;
-	margin: 0;
+  font-size: 130%;
+  line-height: 1.5;
+  padding-top: 10px;
+  margin: 0;
 }
 
 .tt-suggestion img {
-	float: right;
-	width: 70px;
-	margin-left: 10px;
-	border: 1px solid #ccc;
+  float: right;
+  width: 70px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
 }
 
 .number {
-	font-family: BMitra;
+  font-family: BMitra;
 }
 
 .tt-menu .item {
   padding: 3px 20px;
 }
 .tt-menu p {
-	margin-bottom: 0;
-	font-size: 19px;
+  margin-bottom: 0;
+  font-size: 19px;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -131,29 +132,29 @@ body {
 }
 
 .ltr {
-	direction: ltr;
-	text-align: left;
+  direction: ltr;
+  text-align: left;
 }
 
 .paper-item {
-	border-bottom: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
 }
 .paper-item:last-child {
   border: none;
 }
 .paper-item .year {
-	float: left;
-	display: inline-block;
-	background-color: #eee;
-	border: 1px solid;
-	line-height: 1;
-	padding: 3px 4px 0;
-	margin-top: 5px;
+  float: left;
+  display: inline-block;
+  background-color: #eee;
+  border: 1px solid;
+  line-height: 1;
+  padding: 3px 4px 0;
+  margin-top: 5px;
   margin-right: 10px;
-	border-radius: 3px;
+  border-radius: 3px;
 }
 .paper-item.ltr .year {
-	float: right;
+  float: right;
 }
 .paper-item:hover .year {
   color: #fff;

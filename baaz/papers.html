@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 	<h1>باز</h1>
-	<p style="margin-bottom: 50px;">جستجوی آسان فارسی</p>
+	<p style="margin-bottom: 30px;">جستجوی آسان فارسی</p>
 
 	<div class="box paper query">
 		<h2>درک منظور مخاطب</h2>
@@ -22,12 +22,6 @@
 		<h2>آشنایی با زبان فارسی</h2>
 
 		<input class="typeahead" type="text" dir="auto" value="تفاوت زبان قوم فارس و عرب" autocomplete="off">
-	</div>
-
-	<div class="box paper query">
-		<h2>فاصله‌ها</h2>
-
-		<input class="typeahead" type="text" dir="auto" value="بیسیم" autocomplete="off">
 	</div>
 
 	<div class="box paper query">
@@ -60,8 +54,8 @@ $(function(){
 			wildcard: '%QUERY',
 			filter: function (result) {
 				items = $.map(result.items, function(res) {
-					res.item._title = res.highlight.title || res.item.title;
-					res.item._description = '...'+ res.highlight.description[0] +'...' || '';
+					res.item._title = 'title' in res.highlight ? res.highlight.title : res.item.title;
+					res.item._description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
 					return res.item;
 				});
 				if (items.length && result.didYouMean)
