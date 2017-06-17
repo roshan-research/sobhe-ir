@@ -19,6 +19,12 @@
 	</div>
 
 	<div class="box paper query">
+		<h2>تصحیح غلط املایی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="اقتصاد مقاوم" autocomplete="off">
+	</div>
+
+	<div class="box paper query">
 		<h2>آشنایی با زبان فارسی</h2>
 
 		<input class="typeahead" type="text" dir="auto" value="تفاوت زبان قوم فارس و عرب" autocomplete="off">
@@ -28,6 +34,12 @@
 		<h2>جستجوی دقیق</h2>
 
 		<input class="typeahead" type="text" dir="auto" value="اقتصاد «مقاوم»" autocomplete="off">
+	</div>
+
+	<div class="box paper complete">
+		<h2>جستجوی در لحظه</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="روش اقتصا">
 	</div>
 
 	<div class="box paper suggest">
@@ -54,14 +66,23 @@ $(function(){
 			wildcard: '%QUERY',
 			filter: function (result) {
 				items = $.map(result.items, function(res) {
-					res.item._title = 'title' in res.highlight ? res.highlight.title : res.item.title;
-					res.item._description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
+					res.item.title = 'title' in res.highlight ? res.highlight.title : res.item.title;
+					res.item.description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
 					return res.item;
 				});
 				if (items.length && result.didYouMean)
 					items[0].didYouMean = result.didYouMean;
 				return items;
 			}
+		}
+	});
+	papersComplete = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/complete?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { return $.map(result.items, function(res) { return res.item; }); }
 		}
 	});
 	papersSuggest = new Bloodhound({
@@ -77,7 +98,7 @@ $(function(){
 
 	var headerTemplate = function(didYouMean) { return '<div class="item title text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
-	var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.data.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item._title + '</p><p class="description">'+ item._description + '</p></a></div>'; };
+	var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.data.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item.title + '</p><p class="description">'+ item.description + '</p></a></div>'; };
 
 	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
 
@@ -114,6 +135,23 @@ $(function(){
 	}).on('typeahead:open', function (obj, datum, name) {
 		$('.tt-menu').unbind('click');
 	});
+
+
+	$('.paper.complete input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1,
+	}, {
+		display: 'title',
+		name: 'paper-complete-items',
+		source: papersComplete,
+		limit: 10,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return paperTemplate(item); }
+		}
+	});
+
 
 	$('.paper.suggest input.typeahead').typeahead({
 		hint: true,
