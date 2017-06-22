@@ -82,6 +82,10 @@ body {
   text-align: center;
 }
 
+h2 {
+  margin-bottom: 15px;
+}
+
 .box {
   padding-top: 20px;
   height: 100vh;
