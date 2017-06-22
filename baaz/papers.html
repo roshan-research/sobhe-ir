@@ -21,7 +21,7 @@
 	<div class="box paper query">
 		<h2>تصحیح غلط املایی</h2>
 
-		<input class="typeahead" type="text" dir="auto" value="اقتصاد مقاوم" autocomplete="off">
+		<input class="typeahead" type="text" dir="auto" value="چقندر قند" autocomplete="off">
 	</div>
 
 	<div class="box paper query">
@@ -39,7 +39,7 @@
 	<div class="box paper complete">
 		<h2>جستجوی در لحظه</h2>
 
-		<input class="typeahead" type="text" dir="auto" value="روش اقتصا">
+		<input class="typeahead" type="text" dir="auto" value="تحلیل زم">
 	</div>
 
 	<div class="box paper suggest">
@@ -82,7 +82,7 @@ $(function(){
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		remote: {
-			url: remoteHost + 'civilica/paper/complete?text=%QUERY',
+			url: remoteHost + 'civilica/paper/complete?text=%QUERY&size=10',
 			wildcard: '%QUERY',
 			filter: papersFilter
 		}
@@ -152,6 +152,8 @@ $(function(){
 			empty: '<div class="item">...</div>',
 			suggestion: function(item) { return paperTemplate(item); }
 		}
+	}).on('typeahead:open', function (obj, datum, name) {
+		$('.tt-menu').unbind('click');
 	});
 
 
