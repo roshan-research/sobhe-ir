@@ -2,30 +2,49 @@
 FORMAT: 1A
 HOST: http://baaz.sobhe.ir:5000/
 
-# Baaz
+# باز
 
-Persian search engine.
+<div dir=rtl>
+ابزار جستجوی هوشمند فارسی.
+</div>
 
-> For using Baaz API you need a TOKEN_KEY, if you don't have one,
-please contact baaz@sobhe.ir.
+<blockquote dir=rtl>
+برای دسترسی به واسط برنامه‌نویس، نیاز به یک TOKEN_KEY معتبر دارید که به منظور احراز هویت شما در سامانه استفاده می‌شود. اگر قبلا آن را دریافت کرده‌اید، می‌توانید با جای‌گذاری آن در تقاضاهای این صفحه، از سامانه استفاده کنید و اگر نه، لطفا از آدرس baaz@sobhe.ir برای تماس با ما استفاده کنید.
+</blockquote>
 
 
-## Indexing [/{index_name}/index]
+## نمایه‌سازی [/{index_name}/index]
 
-Functions for managing search index content.
+<div dir=rtl>
+برای جستجوی اسناد ابتدا باید آنها را نمایه کنید. نمایه جستجو در واقع بخشی از پایگاه داده‌ها است که انتظار دارید، کاربر با نوشتن عبارت مورد نظر، نتیجه را از میان آنها پیدا کند.
+</div>
 
 + Parameters
 
-    + index_name (required, string, `test`) name of the entiteis collection
+    + index_name (required, string, `baaz`) - شناسه نمایه
 
-### Add Entities [POST]
 
-You may create or update entities using this action. It takes a JSON
-object containing a list of entites with following optional properties:
+### ثبت داده‌ها [POST]
 
-TODO: property documentation.
+<div dir=rtl>
+این تابع نمایه‌سازی اسناد را فراهم می‌کند. ورودی items برای این تابع، شامل فهرستی از اسناد است که هر کدام از آنها باید ثبت یا به‌روزرسانی شوند.
+</div>
+
+<div dir=rtl>
+برای به‌روزرسانی سند، کافیست داده‌های جدید مربوط به آن، به همراه ویژگی id که سند با آن ثبت‌شده، فرستاده شود. توجه کنید که در هنگام به‌روزرسانی، فقط اطلاعات ارسال‌شده ذخیره می‌شوند و دیگر ویژگی‌های سند، تغییر نمی‌کنند.
+</div>
 
 + Request (application/json)
+
+    + Attributes
+
+        - type: movie (string, required) - این ویژگی نوع سند را مشخص می‌کند و برای محدود کردن دامنه جستجو استفاده می‌شود
+        - id: 1 (number, required) - شناسه سند که در هر «نوع»، ویژگی یکتا محسوب می‌شود
+        - title: ماجرای نیمروز (string, required) - عنوان سند که مهم‌ترین ویژگی آن محسوب می‌شود
+        - importance: 100 (number) - هر چه میزان اهمیت یک سند بالاتر باشد، رتبه آن در میان نتایج بالاتر است
+        - time: 2017-07-08 10:30 (string) - هر چه زمان ایجاد سند به زمان حال نزدیکتر باشد، رتبه آن در میان نتایج بالاتر است
+        - labels: هیجانی, ماجراجویی (array[string]) - مجموعه برچسب‌های سند که جستجو نمی‌شوند و برای محدود کردن نتایج مورد استفاده قرار می‌گیرند
+        - ...: ... (string) - هر ویژگی دیگری در قالب «نوشته» یا «نوشته‌ها» می‌تواند برای سند ثبت شود و مورد جستجو قرار گیرد
 
     + Headers
 
@@ -36,18 +55,29 @@ TODO: property documentation.
             {
                 "items": [
                     {
-                        "type": "type1",
+                        "type": "movie",
                         "id": 1,
-                        "title": "عنوان",
-                        "importance": 1,
-                        "description": "...",
-                        "labels": "برچسب ۱|برچسب ۲",
-                        "data": {"url": "http://sample.com"}
+                        "title": "ماجرای نیمروز",
+                        "director": "محمدحسین مهدویان",
+                        "actors": ["جواد عزتی", "هادی حجازی‌فر"],
+                        "labels": ["هیجانی", "ماجراجویی"],
+                        "importance": 100,
+                        "data": {"url": "https://www.filimo.com/m/czWum"}
                     },
                     {
-                        "type": "type2",
-                        "id": 5,
-                        "title": "عنوان"
+                        "type": "movie",
+                        "id": 2,
+                        "title": "ایستاده در غبار",
+                        "director": "محمدحسین مهدویان",
+                        "labels": ["هیجانی", "جنگی"],
+                        "importance": 50,
+                        "data": {"url": "https://www.filimo.com/m/fsa4n"}
+                    },
+                    {
+                        "type": "person",
+                        "id": 1,
+                        "title": "ابراهیم حاتمی‌کیا",
+                        "data": {"url": "https://www.filimo.com/crew/ابراهیم_حاتمی_کیا"}
                     }
                 ]
             }
@@ -57,12 +87,14 @@ TODO: property documentation.
     + Body
 
             {
-                "ids": [1, 5]
+                "ids": [1, 2, 1]
             }
 
-### Delete Entities [DELETE]
+### حذف داده‌ها [DELETE]
 
-You may delete indexed entities using this action.
+<div dir=rtl>
+این تابع امکان حذف مجموعه‌ای از اسناد را فراهم می‌کند. ویژگی type نمایش‌دهنده گروه اسناد است و ids شماره آنها را مشخص می‌کند.
+</div>
 
 + Request (application/json)
 
@@ -73,8 +105,8 @@ You may delete indexed entities using this action.
     + Body
 
             {
-                "type": "type2",
-                "ids": [5]
+                "type": "movie",
+                "ids": [2]
             }
 
 + Response 200 (application/json)
@@ -82,103 +114,105 @@ You may delete indexed entities using this action.
     + Body
 
             {
-                "ids": [5]
+                "ids": [2]
             }
 
 
-## Search [/{index_name}/{type_names}/query?text={text}]
+## ‌ [/{index_name}/{type_names}/query?text={text}]
 
-Finding indexed items.
+# جستجوی اسناد
 
 + Parameters
 
-    + index_name (required, string, `test`) name of the entiteis collection
-    + type_names (required, string, `type1|type2`) list of type names sepearted with vertical bar (|) character
-    + text (required, string, `عنوان`) text phrase to search
+    + index_name (required, string, `baaz`) - شناسه نمایه
+    + type_names (required, string, `movie|person`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text (required, string, `نیم‌روز`) - عبارت مورد جستجو
 
-### Request [GET]
+### جستجو [GET]
+
+<div dir=rtl>
+داده‌های نمایه‌شده با استفاده از این تابع قابل جستجو هستند.
+</div>
 
 + Response 200 (application/json)
 
         {
+          "didYouMean": "<em>نیمروز</em>",
           "items": [
             {
-              "type": "type1",
+              "type": "movie",
               "id": "1",
               "item": {
-                "title": "عنوان",
-                "labels": "برچسب ۱|برچسب ۲",
-                "description": "…",
-                "importance": 1,
-                "data": {
-                  "url": "http://sample.com"
-                }
+                "title": "ماجرای نیمروز",
+                "labels": ["هیجانی", "ماجراجویی"],
+                "importance": 100,
+                "data": {"url": "https://www.filimo.com/m/czWum"}
               },
               "highlight": {
-                "title": [
-                  "<em>عنوان</em>"
-                ]
+                "title": ["ماجرای <em>نیمروز</em>"]
               },
-              "_score": 2.9632897
+              "_score": 7.0999684
             }
           ]
         }
 
 
-## Realtime Search [/{index_name}/{type_names}/complete?text={text}]
-
-Finding indexed items while user types search query.
+## ‌ [/{index_name}/{type_names}/complete?text={text}]
 
 + Parameters
 
-    + index_name (required, string, `test`) name of the entiteis collection
-    + type_names (required, string, `type1`) list of type names sepearted with vertical bar (|) character
-    + text (required, string, `ع`) text phrase to search in entity titles
+    + index_name (required, string, `baaz`) - شناسه نمایه
+    + type_names (required, string, `person`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text (required, string, `ابراهیم حا`) - عبارت مورد جستجو
 
-### Request [GET]
+### جستجوی در لحظه [GET]
+
+<div dir=rtl>
+کاربر نباید منتظر بماند تا تمام عبارت مورد نظرش را بنویسد، باز در حال نوشتن عبارت، نتیجه را پیدا می‌کند.
+</div>
 
 + Response 200 (application/json)
 
         {
           "items": [
             {
-              "type": "type1",
-              "id": "1"
-              "text": "عنوان",
+              "type": "person",
+              "id": "1",
+              "_score": 1.6581774,
               "item": {
-                "title": "عنوان"
-                "labels": "برچسب ۱|برچسب ۲",
-                "description": " …",
+                "title": "ابراهیم حاتمی‌کیا",
                 "importance": 1,
-                "data": {
-                  "url": "http://sample.com"
-                },
+                "data": {"url": "https://www.filimo.com/crew/ابراهیم_حاتمی_کیا"}
               },
-              "_score": 2,
+              "highlight": {
+                "title": ["<em>ابراهیم</em> حاتمی‌کیا"]
+              }
             }
           ]
         }
 
 
-## Query Suggestion [/{index_name}/{type_names}/suggest?text={text}]
-
-Autocomplete functionality based on search history.
+## ‌ [/{index_name}/{type_names}/suggest?text={text}]
 
 + Parameters
 
-    + index_name (required, string, `test`) name of the entiteis collection
-    + type_names (required, string, `type1`) list of type names sepearted with vertical bar (|) character
-    + text (required, string, `ع`) text phrase to search in previous search history
+    + index_name (required, string, `baaz`) - شناسه نمایه
+    + type_names (required, string, `movie`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text (required, string, `ن`) - عبارت مورد جستجوی
 
-### Request [GET]
+### پیشنهاد جستجو [GET]
+
+<div dir=rtl>
+وقتی کاربر در حال نوشتن عبارت مورد نظر است، باز با استفاده از جستجوهای قبلی، تلاش می‌کند به کاربر عبارت مناسبی را برای جستجو پیشنهاد دهد.
+</div>
 
 + Response 200 (application/json)
 
         {
           "items": [
             {
-              "text": "عنوان",
-              "count": 4
+              "text": "نیم‌روز",
+              "count": 2
             }
           ]
         }
