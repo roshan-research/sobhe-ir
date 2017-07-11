@@ -146,15 +146,17 @@ HOST: http://baaz.sobhe.ir:5000/
             }
 
 
-## ‌ [/{index_name}/{type_names}/query?text={text}]
+## ‌ [/{index_name}/{type_names}/query{?text,size,from}]
 
 # جستجوی اسناد
 
 + Parameters
 
-    + index_name (required, string, `baaz`) - شناسه نمایه
-    + type_names (required, string, `movie|person`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
-    + text (required, string, `نیم‌روز`) - عبارت مورد جستجو
+    + index_name: `baaz` (required, string) - شناسه نمایه
+    + type_names: `movie|person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text: `نیم‌روز` (required, string) - عبارت مورد جستجو
+    + size: `10` (optional, number) - تعداد نتایج در پاسخ
+    + from: `0` (optional, number) - نقطه شروع برای صفحه‌بندی نتایج
 
 ### جستجو [GET]
 
@@ -185,13 +187,15 @@ HOST: http://baaz.sobhe.ir:5000/
         }
 
 
-## ‌ [/{index_name}/{type_names}/complete?text={text}]
+## ‌ [/{index_name}/{type_names}/complete{?text,size,from}]
 
 + Parameters
 
-    + index_name (required, string, `baaz`) - شناسه نمایه
-    + type_names (required, string, `person`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
-    + text (required, string, `ابراهیم حا`) - عبارت مورد جستجو
+    + index_name: `baaz` (required, string) - شناسه نمایه
+    + type_names: `person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text: `ابراهیم حا` (required, string) - عبارت مورد جستجو
+    + size: `10` (optional, number) - تعداد نتایج در پاسخ
+    + from: `0` (optional, number) - نقطه شروع برای صفحه‌بندی نتایج
 
 ### جستجوی در لحظه [GET]
 
@@ -220,13 +224,13 @@ HOST: http://baaz.sobhe.ir:5000/
         }
 
 
-## ‌ [/{index_name}/{type_names}/suggest?text={text}]
+## ‌ [/{index_name}/{type_names}/suggest{?text}]
 
 + Parameters
 
-    + index_name (required, string, `baaz`) - شناسه نمایه
-    + type_names (required, string, `movie`) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
-    + text (required, string, `ن`) - عبارت مورد جستجوی
+    + index_name: `baaz` (required, string) - شناسه نمایه
+    + type_names: `movie` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + text: `ن` (required, string) - عبارت مورد جستجو
 
 ### پیشنهاد جستجو [GET]
 
