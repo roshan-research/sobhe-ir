@@ -21,7 +21,7 @@ HOST: http://baaz.sobhe.ir:5000/
 
 + Parameters
 
-    + index_name (required, string, `baaz`) - شناسه نمایه
+    + index_name: `baaz` (required, string) - شناسه نمایه
 
 
 ### ثبت داده‌ها [POST]
@@ -146,15 +146,16 @@ HOST: http://baaz.sobhe.ir:5000/
             }
 
 
-## ‌ [/{index_name}/{type_names}/query{?text,size,from}]
+## ‌ [/{index_name}/{types}/query{?fields,text,size,from}]
 
 # جستجوی اسناد
 
 + Parameters
 
     + index_name: `baaz` (required, string) - شناسه نمایه
-    + type_names: `movie|person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + types: `movie|person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
     + text: `نیم‌روز` (required, string) - عبارت مورد جستجو
+    + fields: `title|director` (optional, string) - فهرست ویژگی‌ها که با نویسه خط (|) به هم متصل شده‌اند
     + size: `10` (optional, number) - تعداد نتایج در پاسخ
     + from: `0` (optional, number) - نقطه شروع برای صفحه‌بندی نتایج
 
@@ -174,7 +175,9 @@ HOST: http://baaz.sobhe.ir:5000/
               "id": "1",
               "item": {
                 "title": "ماجرای نیمروز",
+                "director": "محمدحسین مهدویان",
                 "labels": ["هیجانی", "ماجراجویی"],
+                "actors": ["جواد عزتی", "هادی حجازی‌فر"],
                 "importance": 100,
                 "data": {"url": "https://www.filimo.com/m/czWum"}
               },
@@ -187,12 +190,12 @@ HOST: http://baaz.sobhe.ir:5000/
         }
 
 
-## ‌ [/{index_name}/{type_names}/complete{?text,size,from}]
+## ‌ [/{index_name}/{types}/complete{?text,size,from}]
 
 + Parameters
 
     + index_name: `baaz` (required, string) - شناسه نمایه
-    + type_names: `person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + types: `person` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
     + text: `ابراهیم حا` (required, string) - عبارت مورد جستجو
     + size: `10` (optional, number) - تعداد نتایج در پاسخ
     + from: `0` (optional, number) - نقطه شروع برای صفحه‌بندی نتایج
@@ -216,20 +219,20 @@ HOST: http://baaz.sobhe.ir:5000/
                 "data": {"url": "https://www.filimo.com/crew/ابراهیم_حاتمی_کیا"}
               },
               "highlight": {
-                "title": ["<em>ابراهیم</em> حاتمی‌کیا"]
+                "title": ["<em>ابراهیم حاتمی‌کیا</em>"]
               },
-              "_score": 1.6581774
+              "_score": 2.5382035
             }
           ]
         }
 
 
-## ‌ [/{index_name}/{type_names}/suggest{?text}]
+## ‌ [/{index_name}/{types}/suggest{?text}]
 
 + Parameters
 
     + index_name: `baaz` (required, string) - شناسه نمایه
-    + type_names: `movie` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+    + types: `movie` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
     + text: `ن` (required, string) - عبارت مورد جستجو
 
 ### پیشنهاد جستجو [GET]
