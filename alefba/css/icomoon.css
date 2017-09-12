@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon/icomoon.eot?g0yz6x');
+  src:  url('../fonts/icomoon/icomoon.eot?g0yz6x#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon/icomoon.ttf?g0yz6x') format('truetype'),
+    url('../fonts/icomoon/icomoon.woff?g0yz6x') format('woff'),
+    url('../fonts/icomoon/icomoon.svg?g0yz6x#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-article:before {
+  content: "\e901";
+}
+.icon-office:before {
+  content: "\e903";
+}
+.icon-newspaper:before {
+  content: "\e904";
+}
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-pencil2:before {
+  content: "\e906";
+}
+.icon-pen:before {
+  content: "\e908";
+}
+.icon-image:before {
+  content: "\e90d";
+}
+.icon-images:before {
+  content: "\e90e";
+}
+.icon-book:before {
+  content: "\e91f";
+}
+.icon-books:before {
+  content: "\e920";
+}
+.icon-profile:before {
+  content: "\e923";
+}
+.icon-files-empty:before {
+  content: "\e925";
+}
+.icon-file-picture:before {
+  content: "\e927";
+}
+.icon-copy:before {
+  content: "\e92c";
+}
+.icon-stack:before {
+  content: "\e92e";
+}
+.icon-calculator:before {
+  content: "\e940";
+}
+.icon-quotes-right:before {
+  content: "\e978";
+}
+.icon-search:before {
+  content: "\e986";
+}
+.icon-zoom-in:before {
+  content: "\e987";
+}
+.icon-magic-wand:before {
+  content: "\e997";
+}
+.icon-meter:before {
+  content: "\e9a6";
+}
+.icon-target:before {
+  content: "\e9b3";
+}
+.icon-clipboard:before {
+  content: "\e9b8";
+}
+.icon-menu:before {
+  content: "\e9bd";
+}
+.icon-sphere:before {
+  content: "\e9c9";
+}
+.icon-earth:before {
+  content: "\e9ca";
+}
+.icon-eye:before {
+  content: "\e9ce";
+}
+.icon-spell-check:before {
+  content: "\ea12";
+}
+.icon-sort-alpha-asc:before {
+  content: "\ea48";
+}
+.icon-sort-alpha-desc:before {
+  content: "\ea49";
+}
+.icon-make-group:before {
+  content: "\ea58";
+}
+.icon-font-size:before {
+  content: "\ea61";
+}
+.icon-clear-formatting:before {
+  content: "\ea6f";
+}
+.icon-stackoverflow:before {
+  content: "\ead0";
+}
+.icon-verified_user:before {
+  content: "\e900";
+}
