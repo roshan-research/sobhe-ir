@@ -1,8 +1,8 @@
 function animateOverlay(id) {
-    $(id).fadeIn(500);
+    $('.overlay').fadeOut(500);
     setTimeout(function(){
-        $(id).fadeOut(500);
-    }, 5000);
+        $(id).fadeIn(500);
+    }, 500);
 }
 
 function infiniteAnimation(){
@@ -32,7 +32,18 @@ $(document).ready(function(){
         block.find("p").toggleClass("visible");
     });
 
-    infiniteAnimation();
+    
+    $("button#golrokh").addClass('selected')
+    animateOverlay(".golrokh");
+    $("button.offset").click(function(e){
+        if($(e.target).hasClass('selected')){
+            return;
+        }else{
+            $('button.offset').removeClass('selected');
+            $(e.target).addClass('selected')
+        }
+        animateOverlay('.' + e.target.id);
+    });
 
     $("div.text-colored > *").click(function(e){
         window.open(e.currentTarget.closest(".text-colored").dataset.href, "_blank");
