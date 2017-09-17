@@ -465,6 +465,18 @@ div.text-colored *{
         display: none;
     }
 
+    .buttons {
+        top: 10px;
+        width: 655px;
+    }
+
+    .buttons button{
+        width: 200px;
+        margin-top: 10px;
+        font-size: 14px;
+        height: 45px;
+    }
+
 
 }
 
@@ -556,6 +568,19 @@ div.text-colored *{
 
     .mobile div h2{
         margin-top: 5px;
+    }
+
+    .buttons button{
+        width: 30%;
+        height: 35px;
+        font-size: 10px;
+        padding:0;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        bottom: 10px;
+        width: 100%;
     }
 }
 
@@ -695,16 +720,29 @@ code {
     right: 0;
     left: 0;
     margin: auto;
-    top: 10px;
-    width: 655px;
+    display: inline-block;
+    vertical-align: middle;
+    bottom: 60px;
 }
 
 .buttons button{
-    width: 200px;
-    height: 45px;
-    margin-top: 10px;
-    font-size: 14px;
     font-weight: bold;
+    width: calc(100%/3);
+    height: 45px;
+    font-size: 16px;
+    padding: 0;
+    margin-left: 0;
+    margin-bottom: 10px;
+    margin-right: 0;
+    border: 2px solid #fff;
+    display: inline-block;
+    /* line-height: 1.42857143; */
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    float: left;
 }
 /*
   As a bonus, I will now begin including a shoddily written limerick or other high literary masterpiece in all my pens. Misspelled visual rhymes and two left feet are the spice of life. You're welcome.
