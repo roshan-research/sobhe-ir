@@ -2,24 +2,30 @@
 FORMAT: 1A
 HOST: http://api.sobhe.ir
 
-# Alefba
+# الفبا
 
-Alefba reads Perisan, Arabic and English text images.
+<div dir=rtl>
+نویسه‌خوان الفبا تصویر اسناد فارسی، انگلیسی و عربی را می‌خواند و در قالب متن مرتب ارائه می‌دهد.
+</div>
 
-> For using Alefba API you need a TOKEN_KEY, if you don't have one,
-please contact alefba@sobhe.ir.
+<blockquote dir=rtl>
+برای دسترسی به واسط برنامه‌نویس الفبا نیاز به یک TOKEN_KEY معتبر دارید که برای احراز هویت استفاده می‌شود. لطفا برای آزمایش سامانه، این متغیر را در تقاضاهای نمونه، جای‌گذاری کنید. سوال هم اگر دارید، لطفا برای آدرس alefba@sobhe.ir بنویسید.
+</blockquote>
 
 
-## Read Image [/alefba/api/read_image]
+## خواندن تصویر [/alefba/api/read_image]
 
-Finds image's text parts and reads them.
+<div dir=rtl>
+این تابع، تصویر نوشته را دریافت می‌کند و متن آن را در قالب JSON باز می‌گرداند. خروجی نویسه‌خوان شامل بخش‌های نوشته (پاراگراف)، جدول و تصویر است. در بخش‌های نوشته و جدول ساختار متن تعیین شده است و نویسه‌های متناظر با هر عبارت به همراه احتمال صحت آن مشخص شده‌اند. این احتمال، نشان می‌دهد که نویسه‌خوان چقدر از نتیجه تحلیل، مطمئن است.
+</div>
 
-### Request [POST]
+### نمونه [POST]
 
-> For uploading image file you can send `multipart/form-data` request
-> to this function:
+<div dir=rtl>
+می‌توانید برای همین تابع، فایل تصویر را به طور مستقیم و در قالب تقاضای <code>multipart/form-data</code> ارسال نمایید:
+</div>
 
-    curl -X POST --header "Authorization: Token TOKEN_KEY" -F "image=@FILENAME" http://HOSTNAME/alefba/api/read_image
+> curl -X POST --header "Authorization: Token TOKEN_KEY" -F "image=@FILENAME" http://HOSTNAME/alefba/api/read_image
 
 + Request (application/json)
 
@@ -41,6 +47,7 @@ Finds image's text parts and reads them.
             "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
             "parts": [
               {
+                "type": "text",
                 "box": "230 367 2096 543",
                 "text": "درس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
                 "lines": [
@@ -66,11 +73,13 @@ Finds image's text parts and reads them.
 
 
 
-## Document Pages [/api/document_pages]
+## صفحات سند [/api/document_pages]
 
-Extracts pages of `PDF` document.
+<div dir=rtl>
+نویسه‌خوان برای تحلیل سند، ابتدا باید آن را صفحه‌صفحه کند. این تابع، فایل سند را در قالب PDF دریافت می‌کند و صفحات آن را به عنوان نتیجه باز می‌گرداند. بعد از این مرحله، تابع «خواندن صفحه» می‌تواند هر کدام از صفحه‌های سند را تحلیل کند.
+</div>
 
-### Request [POST]
+### نمونه [POST]
 
 + Request (application/json)
 
