@@ -719,10 +719,11 @@ code {
     /* float: right; */
     right: 0;
     left: 0;
-    margin: auto;
+    margin: 0 auto;
     display: inline-block;
     vertical-align: middle;
     bottom: 60px;
+    height: 45px;
 }
 
 .buttons button{
