@@ -756,5 +756,25 @@ code {
   but threw quite a fit when confronted
 */
 
+#map{
+    min-height: 60vh;
+    background: url("../images/map.png") center center;
+    background-size: cover;
+}
+.footer{
+    background: rgba(248, 248, 248, 0.75);
+    height: 100%;
+    position: relative;
+}
 
+.footer .container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.logo-footer img{
+    width: 128px;
+}
 
