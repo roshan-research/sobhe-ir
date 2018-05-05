@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>باز</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../fonts/mitra.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+	<h1>باز</h1>
+	<p style="margin-bottom: 25px;">جستجوی آسان فارسی</p>
+
+	<div class="box paper query">
+		<h2>درک منظور مخاطب</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="اقتصاد مقاوم" autocomplete="off">
+	</div>
+
+	<div class="box paper query">
+		<h2>تصحیح غلط املایی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="چقندر قند" autocomplete="off">
+	</div>
+
+	<div class="box paper query">
+		<h2>آشنایی با زبان فارسی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="تفاوت زبان قوم فارس و عرب" autocomplete="off">
+	</div>
+
+	<div class="box paper query">
+		<h2>گوناگونی نوشتار فارسی</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="فراابتکاری" autocomplete="off">
+	</div>
+
+	<div class="box paper query">
+		<h2>جستجوی دقیق</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="اقتصاد «مقاوم»" autocomplete="off">
+	</div>
+
+	<div class="box paper complete">
+		<h2>جستجوی در لحظه</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="تحلیل زم">
+	</div>
+
+	<div class="box paper suggest">
+		<h2>سابقه جستجو</h2>
+
+		<input class="typeahead" type="text" dir="auto" value="ا">
+	</div>
+
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="typeahead.bundle.min.js"></script>
+
+<script type="text/javascript">
+var remoteHost = 'http://api.sobhe.ir:7000/';
+var running = false;
+
+$(function(){
+
+	papersFilter = function (result) {
+		items = $.map(result.items, function(res) {
+			res.item.title = 'title' in res.highlight ? res.highlight.title : res.item.title;
+			res.item.description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
+			return res.item;
+		});
+		if (items.length && result.didYouMean)
+			items[0].didYouMean = result.didYouMean;
+		return items;
+	};
+
+	papersQuery = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/query?fields=title|description&text=%QUERY&size=5',
+			wildcard: '%QUERY',
+			filter: papersFilter
+		}
+	});
+	papersComplete = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/complete?text=%QUERY&size=10',
+			wildcard: '%QUERY',
+			filter: papersFilter
+		}
+	});
+	papersSuggest = new Bloodhound({
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		datumTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: {
+			url: remoteHost + 'civilica/paper/suggest?text=%QUERY',
+			wildcard: '%QUERY',
+			filter: function (result) { return result.items; }
+		}
+	});
+
+
+	var headerTemplate = function(didYouMean) { return '<div class="item title text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
+
+	var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.data.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item.title + '</p><p class="description">'+ item.description + '</p></a></div>'; };
+
+	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
+
+
+	$('.paper.query input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1
+	}, {
+		display: 'title',
+		name: 'paper-query-items',
+		source: function(query, syncResults, asyncResults){
+			if (!running)
+				papersQuery.search(query, syncResults, asyncResults);
+		},
+		limit: 50,
+		templates: {
+			header: function(data) { if (data.suggestions.length && data.suggestions[0].didYouMean) return headerTemplate(data.suggestions[0].didYouMean); else return '' },
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return paperTemplate(item); }
+		}
+	}).on('keyenter keypress keydown keyup input', function($e) {
+		if ($.inArray($e.keyCode, [9, 16 , 17, 18, 20, 37, 38, 39, 40]) < 0) {
+			$e.stopPropagation();
+			if ($e.keyCode === 13) {
+				running = false;
+				var theVal = $($e.target).val();
+				$($e.target).typeahead('val', '');
+				$($e.target).focus().typeahead('val',theVal).focus();
+			} else
+				running = true;
+			//$(this).typeahead($e.keyCode === 13 ? 'open' : 'close');
+		}
+	}).on('typeahead:open', function (obj, datum, name) {
+		$('.tt-menu').unbind('click');
+	});
+
+
+	$('.paper.complete input.typeahead').typeahead({
+		hint: false,
+		highlight: false,
+		minLength: 1,
+	}, {
+		display: 'title',
+		name: 'paper-complete-items',
+		source: papersComplete,
+		limit: 50,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return paperTemplate(item); }
+		}
+	}).on('typeahead:open', function (obj, datum, name) {
+		$('.tt-menu').unbind('click');
+	});
+
+
+	$('.paper.suggest input.typeahead').typeahead({
+		hint: true,
+		highlight: false,
+		minLength: 1,
+	}, {
+		display: 'text',
+		name: 'paper-suggest-items',
+		source: papersSuggest,
+		limit: 10,
+		templates: {
+			empty: '<div class="item">...</div>',
+			suggestion: function(item) { return textTemplate(item); }
+		}
+	});
+});
+</script>
+</body>
+</html>
