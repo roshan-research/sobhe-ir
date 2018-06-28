@@ -1,0 +1,120 @@
+@font-face {
+  font-family: IRMitra;
+  font-weight: normal;
+  src: url('http://www.sobhe.ir/fonts/IRMitra.woff') format('woff');
+}
+
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	height: 80%;
+	background: #7B1FA2;
+	color: #fff;
+	direction: rtl;
+}
+.glyphicon {
+	top: 4px;
+	margin-left: 3px;
+}
+
+.container {
+	max-width: 760px;
+}
+
+body, p {
+	font-family: IRMitra;
+	font-size: 20px;
+	line-height: 1.5;
+}
+
+p {
+	text-align: justify;
+}
+
+h1 {
+	font-size: 60px;
+}
+h2 {
+	font-size: 35px;
+	margin: 30px 0 15px;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+iframe {
+	margin-top: 20px;
+	width: 100%;
+	height: 500px;
+	background: #fff;
+	border-top: 4px dashed #7B1FA2;
+	border-bottom: 4px dashed #7B1FA2;
+}
+
+.header {
+	margin-bottom: 70px;
+}
+
+.row {
+	margin: 20px 0 30px;
+}
+.thumbnail {
+	background: none;
+	text-align: center;
+	color: #fff;
+}
+.thumbnail:hover {
+	background: #fff;
+	color: purple;
+}
+.thumbnail:focus {
+	border-color: #fff;
+}
+
+p > a {
+	color: inherit;
+	padding: 0 2px;
+	border-bottom: 1px solid;
+}
+p > a:hover {
+	color: purple;
+	background: #fff;
+}
+p > a:focus {
+	color: #fff;
+}
+
+.clients {
+	margin-bottom: 50px;
+}
+.clients img {
+	height: 30px;
+	background-color: white;
+	padding: 2px;
+	margin: 0 2px;
+}
+
+/* footer */
+
+html, body {
+	height: 100%;
+}
+.wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+.footer, .push {
+	height: 60px;
+}
+.footer hr {
+	margin: 15px 0 5px;
+}
+.footer p {
+	font-size: 90%;
+	color: #eee;
+}

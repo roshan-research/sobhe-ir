@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>پرده</title>
+
+<link rel="stylesheet" href="style/main.css" type="text/css" />
+
+<link type="text/css" rel="stylesheet" href="http://uiplayground.in/jquery-image-player/css/jquery-image-player-min.css" />
+<script type="text/javascript" src="http://uiplayground.in/jquery-image-player/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://uiplayground.in/jquery-image-player/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://uiplayground.in/jquery-image-player/js/jquery-image-player-min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+
+<style type="text/css">
+	body {
+		direction: ltr;
+
+		font-size: 65%;
+		font-family: Helvetica, Arial;
+		color: #333;
+	}
+
+	.container {
+		margin: 30px auto 0;
+		max-width: 900px;
+	}
+
+
+	/* player */
+
+	.jsvp-title	{
+		direction: rtl;
+	}
+
+	.jsvp-wrapper {
+		margin: 10px auto;
+		width: 900px;
+	}
+	.jsvp-wrapper * {
+		margin: 0;
+		border:0;
+		padding: 0;
+		outline:0;
+		list-style: none;
+	}
+
+	.jsvp-wrapper .jsvp-ul li .jsvp-title {
+		height: calc(100% - 20px);
+	}
+
+	img {
+		width: 100%;
+	}
+	.jsvp-wrapper .jsvp-ul, .jsvp-wrapper .jsvp-ul li {
+		height: 100%;
+	}
+
+	.contentArea::before {
+		content: attr(ref);
+		position: absolute;
+		background-color: #000;
+		color: #fff;
+		padding: 0 5px;
+	}
+
+	/* chart */
+
+	#chart {
+		margin-top: 20px;
+	}
+	.c3 text {
+		stroke: #eee;
+	}
+	.c3 line, .c3 path {
+		stroke: #aaa;
+	}
+
+</style>
+</head>
+<body>
+<div class="container">
+	<div id="player" class="bg0">
+		<ul id="slides">
+		</ul>
+	</div>
+	<div id="chart"></div>
+</div>
+
+
+<script type="text/javascript">
+var urlParam = function(name, defaultValue){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results == null)
+			 return defaultValue;
+		else
+			 return results[1] || defaultValue;
+}
+
+$(function() {
+	var movie = urlParam('movie', 'inception-2010') + '.json';
+	var maxFrames = urlParam('frames', 200);
+	var delay = urlParam('delay', 500);
+	var safeties = [];
+
+	$.get(movie, function(data) {
+
+		var frames = [];
+		$.each(data, function(url, safety) {
+			if (frames.length > maxFrames) return false;
+			safety = Math.round(safety * 100);
+			safeties.push(safety);
+
+			label = safety > 50 ? '' : ('<label class="jsvp-title">نامناسب (اطمینان '+ (100-safety) +'%)</label>');
+			frames .push('<li data-duration="'+ (safety > 50 ? delay : 5*delay) +'"><div class="contentArea" ref="'+ frames.length +'"><img src="'+ url +'">'+ label +'</div></li>');
+		});
+
+		$('#slides').html(frames.join(''));
+
+		$('#player').jsVideoPlayer({
+			showVolumeControl: false,
+			playerHeight: 377  // 450 (large)
+		});
+
+		drawChart(safeties);
+	});
+});
+
+
+var chart;
+
+var drawChart = function(safeties) {
+	safeties.unshift('safety');
+
+	chart = c3.generate({
+		bindto: '#chart',
+		data: {columns: [safeties]},
+		axis: {y: {max: 100, min: 1}},
+		grid: {y: {lines: [{value: 50, text: 'Unsafe'}]}},
+		size: {height: 200},
+		padding: {top: 0, bottom: 0},
+		color: {pattern: ['#FF851B']}
+	});
+};
+
+setInterval(function(){
+	if (!chart) return;
+	frame = Number($('li.current .contentArea').attr('ref'));
+	chart.xgrids([{value: frame?frame:0, text:'now', position: 'start'}]);
+}, 500);
+</script>
+
+<script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" "); for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]); mixpanel.init("b208ae76bcf2f1ba9ee618aebd149d9c");</script>
+<script type="text/javascript">
+	mixpanel.track('Parde Movie');
+</script>
+</body>
+</html>
