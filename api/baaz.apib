@@ -251,3 +251,42 @@ HOST: http://api.sobhe.ir:7000/
             }
           ]
         }
+
+
+## ‌ [/{index_name}/{types}/similars]
+
++ Parameters
+
+    + index_name: `baaz` (required, string) - شناسه نمایه
+    + types: `movie` (required, string) - فهرست دسته‌ها که با نویسه خط (|) به هم متصل شده‌اند
+
+### اسناد مشابه [POST]
+
+<div dir=rtl>
+تابع اسناد مشابه، با دریافت اطلاعات مربوط به یک سند، شبیه‌ترین گزینه‌ها را به سند مورد نظر پیدا کرده و میزان تشابه هر کدام را مشخص می‌کند.
+</div>
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "title": "پرویز"
+            }
+
++ Response 200 (application/json)
+
+        {
+          "items": [
+            {
+              "title": "پرویز",
+              "similarity": 100,
+              ...
+            },
+            ...
+          ]
+        }
