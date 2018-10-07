@@ -1,0 +1,88 @@
+
+FORMAT: 1A
+HOST: http://kashf.sobhe.ir
+
+# کشف
+
+<div dir=rtl>
+کشف با دیدن نمونه‌هایی از یک مفهوم در متن، تصویر و یا ویدئو، آن را یاد می‌گیرد و می تواند در داده‌های جدید آن مفهوم را پیدا کند.
+</div>
+
+<blockquote dir=rtl>
+برای دسترسی به واسط برنامه‌نویس کشف نیاز به یک TOKEN_KEY معتبر دارید که برای احراز هویت استفاده می‌شود. لطفا برای آزمایش سامانه، این متغیر را در تقاضاهای نمونه، جای‌گذاری کنید. سوال هم اگر دارید، لطفا برای آدرس kashf@sobhe.ir بنویسید.
+</blockquote>
+
+
+## تحلیل متن [/api/tag_texts]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "digikala",
+                "contents": ["ارزش خریدنش رو بی شک داره", "اصلا اصلا کیفیت نداره رنگش بااین عکس زمین تاآسمون فرق داره"]
+            }
+
++ Response 200 (application/json)
+
+        [
+          ["ارزش خریدنش رو بی شک داره", [[39, 0.9997, "توصیه خرید"]]],
+          ["اصلا اصلا کیفیت نداره رنگش بااین عکس زمین تاآسمون فرق داره", [[56, 0.9980, "عدم رضایت بعد خرید"]]]
+        ]
+
+
+## تحلیل تصویر [/api/tag_images]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "scene",
+                "image_urls": ["https://media.mehrnews.com/d/2016/08/13/4/2171627.jpg", "http://teatreshahr.com/cache/51/attach/201806/254582_2927092954_1000_667.jpg"]
+            }
+
++ Response 200 (application/json)
+
+        [
+          ["https://media.mehrnews.com/d/2016/08/13/4/2171627.jpg", [[1, 1.0, "حرم رضوی"]]],
+          ["http://teatreshahr.com/cache/51/attach/201806/254582_2927092954_1000_667.jpg", [[36, 0.9981, "تئاتر شهر"]]]
+        ]
+
+
+## تحلیل ویدئو [/api/tag_videos]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "aparat",
+                "video_urls": ["https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4", "https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4"]
+            }
+
++ Response 200 (application/json)
+
+        [
+          ["https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4", [[38884, 0.9985, "پینگ‌پنگ"]]],
+          ["https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4", [[38870, 0.9993, "والیبال"]]]
+        ]
