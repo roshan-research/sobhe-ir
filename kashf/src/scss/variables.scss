@@ -1,0 +1,55 @@
+//===========================================
+// Z-Indexes
+//===========================================
+$z-layers: (
+	navbar: 100,
+);
+
+
+//===========================================
+// Media Queries
+//===========================================
+$xxs :400px;
+$xs :500px;
+$sm :800px;
+$md :1050px;
+$lg :1400px;
+$xlg: 1900px;
+$xxlg: 2500px;
+
+
+//===========================================
+// Global variables
+//===========================================
+$transition: all 0.2s ease;
+
+
+//===========================================
+// Samples Area
+//===========================================
+$navbar-link-x-pad: 2rem;
+$navbar-link-y-pad: 1rem;
+
+
+//===========================================
+// Samples Area
+//===========================================
+$sample-area-columns: 3;
+$sample-area-column-width: (100% / $sample-area-columns);
+$sample-card-footer-padding: 1.5rem;
+$sample-card-white-text-border: 1px solid rgba(#979797,0.5);
+$sample-card-border-radius: 0.5rem;
+$sample-card-box-shadow: .5rem .6rem 4rem rgba(#000, 0.22);
+$sample-card-light-text-bg: #ffffff;
+$sample-card-dark-text-bg: #B9B9B9;
+$sample-card-dark-text-color: #ffffff;
+$sample-card-outer-pad: 1rem;
+
+
+//===========================================
+// Arrow Button
+//===========================================
+$arrow-button-color: #979797;
+$arrow-button-hover-color: #fff;
+$arrow-button-hover-bg: noner;
+$arrow-button-thickness: 0.05em;
