@@ -12,10 +12,10 @@ module.exports = (env, options) => {
         entry: {
             main: ['./src/js/index.js', './src/scss/main.scss']
         },
-        // output: {
-        //     path: path.resolve(__dirname, 'dist'),
-        //     filename: '[name].[chunkhash:5].js'
-        // },
+        output: {
+            path: __dirname,
+            filename: '[name].js'
+        },
         module: {
             rules: [
                 {
