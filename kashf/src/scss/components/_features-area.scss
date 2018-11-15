@@ -1,5 +1,5 @@
 .features-area {
-    background-color: #f8f8f8;
+    background-color: $background-light-gray;
 }
 
 .features-wrapper {
@@ -16,39 +16,45 @@
     display: table-cell;
     width: 50%;
     padding: 2em;
+
+    $accent-colors: (
+        blue: #3f96ec,
+        orange: #C36312,
+        yellow: #FFE100,
+        green: #7ACFC0,
+    );
+
+    @each $name, $value in $accent-colors {
+        &.--#{$name} {
+            background: radial-gradient(circle at 17% 40%, rgba(255,255,255,0) 15%,rgba($value,.7) 250%);
+            .feature__icon > svg {
+                fill: $value
+            }
+        }
+    }
     
-    &.--blue {
-        background: radial-gradient(circle at 17% 40%, rgba(255,255,255,0) 15%,rgba(30,110,189,0.2) 150%); 
-    }
-    &.--orange {
-        background: radial-gradient(circle at 17% 40%, rgba(255,255,255,0) 15%,rgba(#C36312,1) 180%);
-    }
-    &.--yellow {
-        background: radial-gradient(circle at 17% 40%, rgba(255,255,255,0) 15%,rgba(#FFE100,1) 250%); 
-    }
-    &.--green {
-        background: radial-gradient(circle at 17% 40%, rgba(255,255,255,0) 15%,rgba(#7ACFC0,1) 250%); 
-    }
-
     &__icon {
+        margin-bottom: 2em;
 
-        > * {
-            width: 7em;
+        > svg {
+            display: block;
+            width: 4em;
             height: auto;
         }
     }
 
     &__title {
         font-family: HelveticaNeue-Medium;
-        font-size: 1.7em;
+        font-size: 1.5em;
         color: #000000;
         letter-spacing: 0.1em;
         text-transform: uppercase;
     }
 
     &__subtext {
+        margin-top: .5em;
         font-family: HelveticaNeue;
-        font-size: 1.3em;
+        font-size: 1em;
         color: rgba(#3C3C3C,0.76);
         letter-spacing: 0.01em;
         line-height: 1.5;
