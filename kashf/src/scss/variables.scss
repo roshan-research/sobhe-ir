@@ -22,12 +22,22 @@ $xxlg: 2500px;
 // Global variables
 //===========================================
 $transition: all 0.2s ease;
+$card-border-radius: 0.5rem;
+$card-shadow: 0 0 3em rgba(#000, 0.13);
 
 
 //===========================================
 // Colors
 //===========================================
 $background-light-gray: #efefef;
+$primary-blue: #629CD5;
+
+
+//===========================================
+// Buttons
+//===========================================
+$button-primary-color: $primary-blue;
+$button-primary-hover: #fff;
 
 
 //===========================================
@@ -44,8 +54,8 @@ $sample-area-columns: 3;
 $sample-area-column-width: (100% / $sample-area-columns);
 $sample-card-footer-padding: 1.5rem;
 $sample-card-white-text-border: 1px solid rgba(#979797,0.5);
-$sample-card-border-radius: 0.5rem;
-$sample-card-box-shadow: .5rem .6rem 4rem rgba(#000, 0.22);
+$sample-card-border-radius: $card-border-radius;
+$sample-card-box-shadow: $card-shadow;
 $sample-card-light-text-bg: #ffffff;
 $sample-card-dark-text-bg: #B9B9B9;
 $sample-card-dark-text-color: #ffffff;
@@ -59,3 +69,22 @@ $arrow-button-color: #979797;
 $arrow-button-hover-color: #fff;
 $arrow-button-hover-bg: none;
 $arrow-button-thickness: 0.05em;
+
+
+//===========================================
+// Contact Area
+//===========================================
+$contact-area-bg: $background-light-gray;
+$contact-col-gap: 2rem;
+$contact-card-shadow: $card-shadow;
+$contact-card-border-radius: $card-border-radius;
+$contact-card-inner-pad: 2rem;
+$contact-card-bottom-pad: 5rem;
+$contact-detail-color: #3C3C3C;
+$contact-item-hover-color: #004d98;
+$contact-input-color: $contact-detail-color;
+$contact-input-placeholder-color: rgba($contact-input-color, 0.40);
+$contact-input-border-color: $contact-input-color;
+$contact-input-border: 1px solid rgba($contact-input-border-color, 0.15);
+$contact-input-focus-border-color: rgba($contact-input-border-color, 0.5);
+$contact-input-valid-border-color: $primary-blue;

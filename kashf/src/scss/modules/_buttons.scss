@@ -5,8 +5,8 @@
     border-width: 0.1em;
     border-style: solid;
     border-radius: 100px;
-    font-family: 'Helvetica Neue';
-    font-size: 1.5em;
+    font-family: HelveticaNeue;
+    font-size: 1.5rem;
     letter-spacing: 0.8px;
     
     &.--primary {
@@ -20,5 +20,10 @@
             color: #fff;
             // box-shadow: 2px 3px 10px 0 rgba(#000, .15);
         }
+    }
+
+    &.--small {
+        padding: 0.5em 2em;
+        font-size: 1.2rem;
     }
 }

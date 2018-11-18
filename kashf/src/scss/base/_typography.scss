@@ -20,6 +20,10 @@
 
 .section-title {
     @include section-title;
+
+    &.--small {
+        font-size: 1.8em;
+    }
 }
 .section-subtitle {
     @include section-subtitle;
