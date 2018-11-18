@@ -8,12 +8,13 @@ const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 module.exports = (env, options) => {
     const inProduction = (options.mode === 'production');
 
-    return {
+    const config = {
         entry: {
             main: ['./src/js/index.js', './src/scss/main.scss']
         },
         output: {
             path: __dirname,
+            publicPath: __dirname+'/',
             filename: '[name].js'
         },
         module: {
@@ -58,7 +59,7 @@ module.exports = (env, options) => {
                     }
                 },
                 {
-                    test: /\.jpe?g$/,
+                    test: /\.(jpe?g|png)$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'file-loader',
@@ -74,7 +75,6 @@ module.exports = (env, options) => {
                 template: "./src/index.html",
                 filename: "./index.html"
             }),
-            new HtmlWebpackInlineSVGPlugin(),
             new MiniCssExtractPlugin({
                 filename: "[name].css",
                 chunkFilename: "[id].css"
@@ -88,5 +88,12 @@ module.exports = (env, options) => {
                 }
             })
         ]
+    };
+
+    if(inProduction) {
+        config.plugins.push(new HtmlWebpackInlineSVGPlugin())
     }
+
+    return config;
+
 };
