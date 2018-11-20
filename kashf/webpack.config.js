@@ -14,7 +14,6 @@ module.exports = (env, options) => {
         },
         output: {
             path: __dirname,
-            publicPath: __dirname+'/',
             filename: '[name].js'
         },
         module: {
