@@ -86,3 +86,131 @@ HOST: http://kashf.sobhe.ir
           ["https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4", [[38884, 0.9985, "پینگ‌پنگ"]]],
           ["https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4", [[38870, 0.9993, "والیبال"]]]
         ]
+
+
+## آموزش مدل [/api/train_dataset]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "scene"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "dataset": "scene",
+            "state": "waiting"
+        }
+
+
+## وضعیت داده‌ها [/api/dataset_info]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "scene",
+                "predictions_only": true
+            }
+
++ Response 200 (application/json)
+
+        {
+          "title": "لحظه",
+          "state": "trained",
+          "report_count": 935,
+          "data_count": 2404,
+          "evaluation": {
+            "recall": 87,
+            "precision": 91
+          },
+          "tags": [
+            {
+              "title": "برج میلاد"
+              "id": 3,
+              "reports": 116,
+              "predictions": 156,
+              "evaluation": {
+                "recall": 80.3,
+                "precision": 91.4,
+                "f1": 86.0
+              },
+            },
+            ...
+          ]
+        }
+
+
+## گزارش برچسب متن [/api/report_text_tags]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            [
+              {
+                "content": "پیشنهاد میکنم از این بخرید خیلی عالیه.",
+                "tag_id": 39
+              }
+            ]
+
++ Response 200 (application/json)
+
+        [
+          {
+            "report": "[[39,true]]",
+            "id": 1211592
+          }
+        ]
+
+
+
+## گزارش برچسب تصویر [/api/report_image_tags]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            [
+              {
+                "image_url": "https://upload.wikimedia.org/wikipedia/fa/thumb/5/54/Tehran-Milad_Tower2.jpg/800px-Tehran-Milad_Tower2.jpg",
+                "tag_id": 3
+              }
+            ]
+
++ Response 200 (application/json)
+
+        [
+          {
+            "report": "[[3,true]]",
+            "id": 1211593
+          }
+        ]
