@@ -142,6 +142,70 @@ HOST: http://kashf.sobhe.ir
         ]
 
 
+## تحلیل فریم‌های ویدئو [/api/tag_video_frames]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+                "dataset": "scene",
+                "every_ms": 100,
+                "duration": 25,
+                "min_frame_diff": 50,
+                "video_urls": ["https://hw15.cdn.asset.aparat.com/aparat-video/98b7e4cc00c97dffde2ae00567b98a4312759670-480p__79959.mp4"]
+            }
+
++ Response 200 (application/json)
+
+        [
+          {
+            "video_url": "https://hw15.cdn.asset.aparat.com/aparat-video/98b7e4cc00c97dffde2ae00567b98a4312759670-480p__79959.mp4",
+            "frames": [
+              {
+                "frame": 3,
+                "time": "0:00:00",
+                "tags": [
+                  {
+                    "id": 0,
+                    "probability": 1.0,
+                    "title": "ناآشنا"
+                  }
+                ]
+              },
+              {
+                "frame": 585,
+                "time": "0:00:23",
+                "tags": [
+                  {
+                    "id": 39127,
+                    "probability": 0.99,
+                    "title": "پل طبیعت"
+                  }
+                ]
+              },
+              {
+                "frame": 603,
+                "time": "0:00:24",
+                "tags": [
+                  {
+                    "id": 2,
+                    "probability": 1.0,
+                    "title": "میدان آزادی"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+
+
 ## آموزش مدل [/api/train_dataset]
 
 ### نمونه [POST]
