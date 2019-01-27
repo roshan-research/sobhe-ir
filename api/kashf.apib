@@ -33,8 +33,26 @@ HOST: http://kashf.sobhe.ir
 + Response 200 (application/json)
 
         [
-          ["ارزش خریدنش رو بی شک داره", [[39, 0.9997, "توصیه خرید"]]],
-          ["اصلا اصلا کیفیت نداره رنگش بااین عکس زمین تاآسمون فرق داره", [[56, 0.9980, "عدم رضایت بعد خرید"]]]
+          {
+            "content": "ارزش خریدنش رو بی شک داره",
+            "tags": [
+              {
+                "id": 39,
+                "probability": 1.0,
+                "title": "توصیه خرید"
+              }
+            ]
+          },
+          {
+            "content": "اصلا اصلا کیفیت نداره رنگش بااین عکس زمین تاآسمون فرق داره",
+            "tags": [
+              {
+                "id": 56,
+                "probability": 1.0,
+                "title": "عدم رضایت بعد خرید"
+              }
+            ]
+          }
         ]
 
 
@@ -58,8 +76,26 @@ HOST: http://kashf.sobhe.ir
 + Response 200 (application/json)
 
         [
-          ["https://media.mehrnews.com/d/2016/08/13/4/2171627.jpg", [[1, 1.0, "حرم رضوی"]]],
-          ["http://teatreshahr.com/cache/51/attach/201806/254582_2927092954_1000_667.jpg", [[36, 0.9981, "تئاتر شهر"]]]
+          {
+            "image_url": "https://media.mehrnews.com/d/2016/08/13/4/2171627.jpg",
+            "tags": [
+              {
+                "id": 1,
+                "probability": 1.0,
+                "title": "حرم رضوی"
+              }
+            ]
+          },
+          {
+            "image_url": "http://teatreshahr.com/cache/51/attach/201806/254582_2927092954_1000_667.jpg",
+            "tags": [
+              {
+                "id": 36,
+                "probability": 1.0,
+                "title": "تئاتر شهر"
+              }
+            ]
+          }
         ]
 
 
@@ -83,8 +119,26 @@ HOST: http://kashf.sobhe.ir
 + Response 200 (application/json)
 
         [
-          ["https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4", [[38884, 0.9985, "پینگ‌پنگ"]]],
-          ["https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4", [[38870, 0.9993, "والیبال"]]]
+          {
+            "video_url": "https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4",
+            "tags": [
+              {
+                "id": 38884,
+                "probability": 0.9985,
+                "title": "پینگ‌پنگ"
+              }
+            ]
+          },
+          {
+            "video_url": "https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4",
+            "tags": [
+              {
+                "id": 38870,
+                "probability": 0.9993,
+                "title": "والیبال"
+              }
+            ]
+          }
         ]
 
 
@@ -172,7 +226,8 @@ HOST: http://kashf.sobhe.ir
             [
               {
                 "content": "پیشنهاد میکنم از این بخرید خیلی عالیه.",
-                "tag_id": 39
+                "tag_id": 39,
+                "positive": true
               }
             ]
 
@@ -202,7 +257,8 @@ HOST: http://kashf.sobhe.ir
             [
               {
                 "image_url": "https://upload.wikimedia.org/wikipedia/fa/thumb/5/54/Tehran-Milad_Tower2.jpg/800px-Tehran-Milad_Tower2.jpg",
-                "tag_id": 3
+                "tag_id": 3,
+                "positive": true
               }
             ]
 
