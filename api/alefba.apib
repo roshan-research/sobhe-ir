@@ -36,30 +36,32 @@ HOST: http://api.sobhe.ir
     + Body
 
             {
-                "image_url": "http://api.sobhe.ir/media/docs/boute/page1.jpg"
+                "image_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1"
             }
 
 + Response 200 (application/json)
 
         {
-          "image_url": "http://api.sobhe.ir/media/docs/boute/page1.jpg",
+          "image_url":"http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1",
           "document": {
-            "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+            "width": 2750,
+            "height": 2125,
+            "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
             "parts": [
               {
                 "type": "text",
-                "box": "230 367 2096 543",
-                "text": "درس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+                "direction": "rtl",
+                "text": "درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+                "box": "209 305 1711 449",
                 "lines": [
                   {
-                    "box": "232 367 2093 73",
-                    "text": "درس‌های دانشگاهی معمولا با پروژه‌هایی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها",
+                    "text":"درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها",
+                    "probability": 1.0,
+                    "box":"211 305 1707 57",
                     "words": [
-                      {
-                        "box": "1917 367 386 73",
-                        "text": "درس‌های دانشگاهی",
-                        "probability": 0.99
-                      },
+                      ["درس‌های", 1.0, "1787 305 153 57"],
+                      ["دانشگاهی", 1.0, "1622 305 165 57"],
+                      ["معمولا", 1.0, "1514 305 108 57"],
                       ...
                     ]
                   },
@@ -67,10 +69,9 @@ HOST: http://api.sobhe.ir
                 ]
               },
               ...
-            ]
+            ],
           }
         }
-
 
 
 ## صفحات سند [/api/document_pages]
@@ -96,9 +97,9 @@ HOST: http://api.sobhe.ir
 + Response 200 (application/json)
 
         {
-          "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf",
+          "document_url":"http://bayanbox.ir/view/5067853395275628881/boute.pdf",
           "pages": [
-            "http://api.sobhe.ir/media/docs/boute/page1.jpg",
-            "http://api.sobhe.ir/media/docs/boute/page2.jpg"
+            "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1",
+            "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=2"
           ]
         }
