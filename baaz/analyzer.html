@@ -65,21 +65,14 @@ var running = false;
 $(function(){
 
 	papersFilter = function (result) {
-		items = $.map(result.items, function(res) {
-			res.item.title = 'title' in res.highlight ? res.highlight.title : res.item.title;
-			res.item.description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
-			return res.item;
-		});
-		if (items.length && result.didYouMean)
-			items[0].didYouMean = result.didYouMean;
-		return items;
+		return result.tokens;
 	};
 
 	papersQuery = new Bloodhound({
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		remote: {
-			url: remoteHost + 'civilica/paper/query?fields=title|description&text=%QUERY&size=5',
+			url: remoteHost + 'civilica/paper/analyze?text=%QUERY',
 			wildcard: '%QUERY',
 			filter: papersFilter
 		}
@@ -106,7 +99,7 @@ $(function(){
 
 	var headerTemplate = function(didYouMean) { return '<div class="item title text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
-	var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.data.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item.title + '</p><p class="description">'+ item.description + '</p></a></div>'; };
+	var paperTemplate = function(item) { return '<div class=" paper-item clearfix"><p class="title">'+ item.token + '</p></div>'; };
 
 	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
 
