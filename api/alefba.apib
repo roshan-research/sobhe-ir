@@ -103,3 +103,46 @@ HOST: http://api.sobhe.ir
             "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=2"
           ]
         }
+
+
+## دریافت فایل ورد [/alefba/download_word/{document_url}]
+
+<div dir=rtl>
+با استفاده از این تابع می‌توانید نتیجه صفحات پردازش شده را در قالب فایل Microsoft Word دریافت نمایید. در فایل خروجی، قالب سند حفظ شده است و اجزای متن شامل خطوط، پاراگراف‌ها و خانه‌های جدول در جای خود قرار گرفته‌اند.
+</div>
+
++ Parameters
+
+    + document_url: `http://bayanbox.ir/view/5067853395275628881/boute.pdf` (required, string)
+
+### نمونه [GET]
+
++ Response 302 ()
+
+    + Header
+
+            Location: http://api.sobhe.ir/media/files/Alefba.docx
+
+    + Body
+
+
+## دریافت فایل قابل جستجو [/alefba/download_pdf/{document_url}]
+
+<div dir=rtl>
+با استفاده از این تابع می‌توانید نتیجه صفحات پردازش شده را در قالب فایل PDF دریافت نمایید. فایل خروجی، تصاویر صفحات سند ورودی را به همراه نتیجه پردازش آنها نشان می‌دهد. به این ترتیب با جستجوی یک عبارت در این فایل، واژه‌های مورد جستجو در تصویر مشخص و رنگی می‌شوند.
+</div>
+
++ Parameters
+
+    + document_url: `http://bayanbox.ir/view/5067853395275628881/boute.pdf` (required, string)
+    
+### نمونه [GET]
+
++ Response 302 ()
+
+    + Header
+
+            Location: http://api.sobhe.ir/media/files/Alefba.pdf
+
+    + Body
+
