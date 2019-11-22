@@ -13,19 +13,19 @@ HOST: http://alefba.sobhe.ir
 </blockquote>
 
 
-## خواندن تصویر [/alefba/api/read_image/]
+## خواندن صفحه [/api/read_pages/]
 
 <div dir=rtl>
-این تابع، تصویر نوشته را دریافت می‌کند و متن آن را در قالب JSON باز می‌گرداند. خروجی نویسه‌خوان شامل بخش‌های نوشته (پاراگراف)، جدول و تصویر است. در بخش‌های نوشته و جدول ساختار متن تعیین شده است و نویسه‌های متناظر با هر عبارت به همراه احتمال صحت آن مشخص شده‌اند. این احتمال، نشان می‌دهد که نویسه‌خوان چقدر از نتیجه تحلیل، مطمئن است.
+این تابع، تصویر نوشته را دریافت می‌کند و متن آن را در قالباین تابع، تصویر نوشته را دریافت می‌کند و متن آن را در قالب JSON باز می‌گرداند. خروجی نویسه‌خوان شامل بخش‌های نوشته (پاراگراف)، جدول و تصویر است. در بخش‌های نوشته و جدول، نویسه‌های متناظر با هر کلمه به همراه احتمال صحت آنها مشخص شده‌اند. این احتمال، نشان می‌دهد که نویسه‌خوان چقدر از نتیجه تحلیل، مطمئن است.
 </div>
 
 ### نمونه [POST]
 
 <div dir=rtl>
-می‌توانید برای همین تابع، فایل تصویر را به طور مستقیم و در قالب تقاضای <code>multipart/form-data</code> ارسال نمایید:
+می‌توانید برای همین تابع، فایل صفحه را به طور مستقیم و در قالب تقاضای <code>multipart/form-data</code> ارسال نمایید:
 </div>
 
-> curl -X POST --header "Authorization: Token TOKEN_KEY" -F "image=@FILENAME" http://HOSTNAME/alefba/api/read_image
+> curl -X POST --header "Authorization: Token TOKEN_KEY" -F "page=@FILENAME" http://alefba.sobhe.ir/api/read_pages
 
 + Request (application/json)
 
@@ -36,42 +36,41 @@ HOST: http://alefba.sobhe.ir
     + Body
 
             {
-                "image_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1"
+              "page_urls": ["http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1"],
+              "wait": true
             }
 
 + Response 200 (application/json)
 
-        {
-          "image_url":"http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1",
-          "document": {
-            "width": 2750,
-            "height": 2125,
-            "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
-            "parts": [
-              {
-                "type": "text",
-                "direction": "rtl",
-                "text": "درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
-                "box": "209 305 1711 449",
-                "lines": [
-                  {
-                    "text":"درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها",
-                    "probability": 1.0,
-                    "box":"211 305 1707 57",
-                    "words": [
-                      ["درس‌های", 1.0, "1787 305 153 57"],
-                      ["دانشگاهی", 1.0, "1622 305 165 57"],
-                      ["معمولا", 1.0, "1514 305 108 57"],
-                      ...
-                    ]
-                  },
-                  ...
-                ]
-              },
-              ...
-            ],
-          }
-        }
+        [{
+          "page_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf@page=1",
+          "width": 2750,
+          "height": 2125,
+          "text": "بوته\n\nدرس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+          "parts": [
+            {
+              "type": "text",
+              "direction": "rtl",
+              "text": "درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها\n...",
+              "box": "209 305 1711 449",
+              "lines": [
+                {
+                  "text":"درس‌های دانشگاهی معمولا با پروژه‌هابی همراه هستند که سهم قابل‌توجهی از آموزش را بر عهده دارند. این پروژه‌ها",
+                  "probability": 1.0,
+                  "box":"211 305 1707 57",
+                  "words": [
+                    ["درس‌های", 1.0, "1787 305 153 57"],
+                    ["دانشگاهی", 1.0, "1622 305 165 57"],
+                    ["معمولا", 1.0, "1514 305 108 57"],
+                    ...
+                  ]
+                },
+                ...
+              ]
+            },
+            ...
+          ],
+        }]
 
 
 ## صفحات سند [/api/document_pages/]
@@ -82,6 +81,12 @@ HOST: http://alefba.sobhe.ir
 
 ### نمونه [POST]
 
+<div dir=rtl>
+می‌توانید برای همین تابع، فایل سند را به طور مستقیم و در قالب تقاضای <code>multipart/form-data</code> ارسال نمایید:
+</div>
+
+> curl -X POST --header "Authorization: Token TOKEN_KEY" -F "document=@FILENAME" http://alefba.sobhe.ir/api/document_pages
+
 + Request (application/json)
 
     + Headers
@@ -91,7 +96,7 @@ HOST: http://alefba.sobhe.ir
     + Body
 
             {
-                "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
+              "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
             }
 
 + Response 200 (application/json)
@@ -105,7 +110,7 @@ HOST: http://alefba.sobhe.ir
         }
 
 
-## دریافت فایل ورد [/alefba/api/download_word/]
+## دریافت فایل ورد [/api/download_word/]
 
 <div dir=rtl>
 با استفاده از این تابع می‌توانید نتیجه صفحات پردازش شده را در قالب فایل Microsoft Word دریافت نمایید. در فایل خروجی، قالب سند حفظ شده است و اجزای متن شامل خطوط، پاراگراف‌ها و خانه‌های جدول در جای خود قرار گرفته‌اند.
@@ -122,7 +127,7 @@ HOST: http://alefba.sobhe.ir
     + Body
 
             {
-                "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
+              "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
             }
 
 + Response 200 (application/msword)
@@ -134,7 +139,7 @@ HOST: http://alefba.sobhe.ir
     + Body
 
 
-## دریافت فایل قابل جستجو [/alefba/download_pdf/{document_url}]
+## دریافت فایل قابل جستجو [/api/download_pdf/]
 
 <div dir=rtl>
 با استفاده از این تابع می‌توانید نتیجه صفحات پردازش شده را در قالب فایل PDF دریافت نمایید. فایل خروجی، تصاویر صفحات سند ورودی را به همراه نتیجه پردازش آنها نشان می‌دهد. به این ترتیب با جستجوی یک عبارت در این فایل، واژه‌های مورد جستجو در تصویر مشخص و رنگی می‌شوند.
@@ -151,9 +156,9 @@ HOST: http://alefba.sobhe.ir
     + Body
 
             {
-                "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf",
-                "quality": 80,
-                "img_format": "png"
+              "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf",
+              "quality": 100,
+              "img_format": "png"
             }
 
 + Response 200 (application/pdf)
@@ -164,3 +169,29 @@ HOST: http://alefba.sobhe.ir
 
     + Body
 
+
+## حذف سند [/api/delete_document/]
+
+<div dir=rtl>
+با استفاده از این تابع می‌توانید سند ثبت شده در سامانه را به طور کامل حذف کنید.
+</div>
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+              "document_url": "http://bayanbox.ir/view/5067853395275628881/boute.pdf"
+            }
+
++ Response 200 (application/json)
+
+        {
+          "message":"Document deleted successfully."
+        }
