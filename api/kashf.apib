@@ -69,7 +69,7 @@ HOST: http://kashf.sobhe.ir
     + Body
 
             {
-                "dataset": "scene",
+                "dataset": "iran",
                 "image_urls": ["https://media.mehrnews.com/d/2016/08/13/4/2171627.jpg", "http://teatreshahr.com/cache/51/attach/201806/254582_2927092954_1000_667.jpg"]
             }
 
@@ -99,49 +99,6 @@ HOST: http://kashf.sobhe.ir
         ]
 
 
-## تحلیل ویدئو [/api/tag_videos/]
-
-### نمونه [POST]
-
-+ Request (application/json)
-
-    + Headers
-
-            Authorization: Token TOKEN_KEY
-
-    + Body
-
-            {
-                "dataset": "aparat",
-                "video_urls": ["https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4", "https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4"]
-            }
-
-+ Response 200 (application/json)
-
-        [
-          {
-            "video_url": "https://as10.cdn.asset.aparat.com/aparat-video/710669b04155e2303c5fdf705bc4bd1b8975415-360p__58369.mp4",
-            "tags": [
-              {
-                "id": 38884,
-                "probability": 0.9985,
-                "title": "پینگ‌پنگ"
-              }
-            ]
-          },
-          {
-            "video_url": "https://hw20.cdn.asset.aparat.com/aparat-video/399032a8c104391ddd212e49dd8af5c010655136-360p__59410.mp4",
-            "tags": [
-              {
-                "id": 38870,
-                "probability": 0.9993,
-                "title": "والیبال"
-              }
-            ]
-          }
-        ]
-
-
 ## تحلیل فریم‌های ویدئو [/api/tag_video_frames/]
 
 ### نمونه [POST]
@@ -155,7 +112,7 @@ HOST: http://kashf.sobhe.ir
     + Body
 
             {
-                "dataset": "scene",
+                "dataset": "iran",
                 "every_ms": 100,
                 "duration": 25,
                 "min_frame_diff": 50,
@@ -219,13 +176,13 @@ HOST: http://kashf.sobhe.ir
     + Body
 
             {
-                "dataset": "scene"
+                "dataset": "iran"
             }
 
 + Response 200 (application/json)
 
         {
-            "dataset": "scene",
+            "dataset": "iran",
             "state": "waiting"
         }
 
@@ -243,8 +200,8 @@ HOST: http://kashf.sobhe.ir
     + Body
 
             {
-                "dataset": "scene",
-                "predictions_only": true
+                "dataset": "iran",
+                "tags": true
             }
 
 + Response 200 (application/json)
@@ -334,3 +291,81 @@ HOST: http://kashf.sobhe.ir
             "id": 1211593
           }
         ]
+
+
+## ایجاد برچسب [/api/create_tag/]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+              "dataset": "iran",
+              "title": "New Place"
+            }
+
++ Response 200 (application/json)
+
+        {
+          "title": "New Place",
+          "tag_id": 111111111,
+          "active": true
+        }
+
+
+## ویرایش برچسب [/api/update_tag/]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+              "dataset": "iran",
+              "tag_id": 111111111,
+              "title": "Old Place",
+              "active": true
+            }
+
++ Response 200 (application/json)
+
+        {
+          "title": "Old Place",
+          "tag_id": 111111111,
+          "active": true
+        }
+
+
+## حذف برچسب [/api/delete_tag/]
+
+### نمونه [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Token TOKEN_KEY
+
+    + Body
+
+            {
+              "tag_id": 111111111
+            }
+
++ Response 200 (application/json)
+
+        {
+          "dataset": "iran",
+          "deleted_reports": 0
+        }
