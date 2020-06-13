@@ -60,6 +60,12 @@ HOST: http://kashf.sobhe.ir
 
 ### نمونه [POST]
 
+<div dir=rtl>
+می‌توانید برای همین تابع، فایل تصویر را به طور مستقیم و در قالب تقاضای <code>multipart/form-data</code> ارسال نمایید:
+</div>
+
+> curl -X POST --header "Authorization: Token TOKEN_KEY" -F "image_file=@example.jpg" -F "dataset=iran" http://kashf.sobhe.ir/api/tag_images
+
 + Request (application/json)
 
     + Headers
