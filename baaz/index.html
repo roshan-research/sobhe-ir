@@ -66,9 +66,9 @@ $(function(){
 
 	papersFilter = function (result) {
 		items = $.map(result.items, function(res) {
-			res.item.title = 'title' in res.highlight ? res.highlight.title : res.item.title;
-			res.item.description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
-			return res.item;
+			res.title = 'title' in res.highlight ? res.highlight.title : res.title;
+			res.description = 'description' in res.highlight ? '...'+ res.highlight.description[0] +'...' : '';
+			return res;
 		});
 		if (items.length && result.didYouMean)
 			items[0].didYouMean = result.didYouMean;
