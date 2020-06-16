@@ -79,7 +79,7 @@ $(function(){
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		remote: {
-			url: remoteHost + 'civilica/paper/query?fields=title|description&text=%QUERY&size=5',
+			url: remoteHost + 'civilica/paper/query?fields=title|description&text=%QUERY&size=5$include_fields=title|language|link',
 			wildcard: '%QUERY',
 			filter: papersFilter
 		}
