@@ -106,7 +106,7 @@ $(function(){
 
 	var headerTemplate = function(didYouMean) { return '<div class="item title text-center"><p>«'+ didYouMean +'» را می‌خواهید؟</p></div>'; }
 
-	var paperTemplate = function(item) { return '<div class="'+ (item.data.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.data.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item.title + '</p><p class="description">'+ item.description + '</p></a></div>'; };
+	var paperTemplate = function(item) { return '<div class="'+ (item.language == 'En' ? 'ltr' : '') +' paper-item clearfix"><a href="'+ item.link +'"><span class="year number">'+ item.importance +'</span><p class="title">'+ item.title + '</p><p class="description">'+ item.description + '</p></a></div>'; };
 
 	var textTemplate = function(item) { return '<div class="text"><p>' + item.text + '</p></div>'; };
 
